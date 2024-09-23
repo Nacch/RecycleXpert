@@ -9,13 +9,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "rango")
+@Table(name = "rangos")
 public class Rango {
 
     //ID Autogenerado de la tabla
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "rango_name")
     private String ranName;
@@ -25,6 +25,6 @@ public class Rango {
     private Integer maxPoint;
     private Integer minPoints;
 
-    @OneToMany(mappedBy = "rango")
-    private List<Volunteer> volunteers;
+    @OneToMany(mappedBy = "rango",fetch = FetchType.EAGER)
+    private List<Volunteer> volunteers; //Relation with Volunteer
 }
