@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         user.setPassword(new BCryptPasswordEncoder().encode(userdto.getPassword()));
         user.setActive(true);
         user.setRegistrationDate(LocalDateTime.now());
-
         user.setAuthorities(authoritiesFromString(userdto.getAuthorities()));
+
         return userRepository.save(user);
     }
 

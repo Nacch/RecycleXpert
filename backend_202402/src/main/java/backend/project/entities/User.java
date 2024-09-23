@@ -44,7 +44,6 @@ public class User {
     )
     private List<Authority> authorities;
 
-
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private List<Volunteer> volunteers;  // Relation n Volunteer
 }
