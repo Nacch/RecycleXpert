@@ -53,7 +53,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/api/users/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/users/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/users/{id}").permitAll()
-
+            
                         .anyRequest().authenticated() // Proteger todas las demás rutas
         );
 
