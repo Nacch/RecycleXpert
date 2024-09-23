@@ -23,7 +23,6 @@ public class OrganizationServiceImpl implements OrganizationService {
         organization.setContactInfo(organizationDTO.getContactInfo());
         organization.setCollaborationArea(organizationDTO.getCollaborationArea());
 
-
         Organization savedOrganization = organizationRepository.save(organization);
         return convertToDTO(savedOrganization);
     }
