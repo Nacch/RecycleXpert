@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -15,47 +16,46 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Autowired
     private OrganizationRepository organizationRepository;
 
-    @Override
-    public OrganizationDTO registerOrganization(OrganizationDTO organizationDTO) {
-        Organization organization = new Organization();
-        organization.setOrganizationName(organizationDTO.getOrganizationName());
-        organization.setOrgType(organizationDTO.getOrgType());
-        organization.setContactInfo(organizationDTO.getContactInfo());
-        organization.setCollaborationArea(organizationDTO.getCollaborationArea());
-
-
-        Organization savedOrganization = organizationRepository.save(organization);
-        return convertToDTO(savedOrganization);
-    }
-    @Override
-    public List<OrganizationDTO> getAllOrganizations() {
-        return organizationRepository.findAll().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+    // Crear una nueva organización
+    public Organization createOrganization(Organization organization) {
+        return organizationRepository.save(organization);
     }
 
-    //ESTA PARTE VERIFICARRRRRRRRRRRR , TODOO DE CONVERSIONES A DTO
-    @Override
-    public OrganizationDTO getOrganizationById(Long id) {
-        return organizationRepository.findById(id)
-                .map(this::convertToDTO)
-                .orElse(null);
+    // Modificar una organización existente
+    public Organization updateOrganization(Long id, Organization updatedOrganization) {
+        Optional<Organization> existingOrganizationOpt = organizationRepository.findById(id);
+        if (existingOrganizationOpt.isPresent()) {
+            Organization existingOrganization = existingOrganizationOpt.get();
+            existingOrganization.setOrganizationName(updatedOrganization.getOrganizationName());
+            existingOrganization.setOrgType(updatedOrganization.getOrgType());
+            existingOrganization.setContactInfo(updatedOrganization.getContactInfo());
+            existingOrganization.setCollaborationArea(updatedOrganization.getCollaborationArea());
+            // Si es necesario, también se pueden actualizar las listas de eventos y consultas
+            // existingOrganization.setEvents(updatedOrganization.getEvents());
+            // existingOrganization.setConsultations(updatedOrganization.getConsultations());
+            return organizationRepository.save(existingOrganization);
+        } else {
+            throw new RuntimeException("Organization with id " + id + " not found");
+        }
     }
 
-    @Override
+    // Eliminar una organización
     public void deleteOrganization(Long id) {
-        organizationRepository.deleteById(id);
+        if (organizationRepository.existsById(id)) {
+            organizationRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Organization with id " + id + " not found");
+        }
     }
 
-    private OrganizationDTO convertToDTO(Organization organization) {
-        OrganizationDTO dto = new OrganizationDTO();
-        dto.setId(organization.getId());
-        dto.setOrganizationName(organization.getOrganizationName());
-        dto.setOrgType(organization.getOrgType());
-        dto.setContactInfo(organization.getContactInfo());
-        dto.setCollaborationArea(organization.getCollaborationArea());
-        dto.setEventIds(organization.getEvents().stream().map(event -> event.getId()).collect(Collectors.toList()));
-        dto.setConsultationIds(organization.getConsultations().stream().map(consultation -> consultation.getId()).collect(Collectors.toList()));
-        return dto;
+    // Obtener una organización por su ID
+    public Organization getOrganizationById(Long id) {
+        return organizationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Organization with id " + id + " not found"));
+    }
+
+    // Obtener todas las organizaciones
+    public List<Organization> getAllOrganizations() {
+        return organizationRepository.findAll();
     }
 }

@@ -1,3 +1,4 @@
+/*
 package backend.project.services;
 
 import backend.project.dtos.UserDTO;
@@ -9,3 +10,4 @@ public interface UserService {
     public User findById (Long id);
     public User findByUsername(String userName);
 }
+*/

@@ -25,19 +25,19 @@ public class Event {
     private int capacity;
 
     @ManyToOne
-    @JoinColumn(name = "organization_id")
+    @JoinColumn(name = "organization_id", nullable = true)
     private Organization organization;
 
-    @ManyToOne
-    @JoinColumn(name = "eventType_id")
-    private EventType eventType;
+    //@ManyToOne
+    //@JoinColumn(name = "eventType_id", nullable = true)
+    //private EventType eventType;
 
-    @OneToMany(mappedBy = "event",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "event",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RegisterEvent> registerEvents;  // Relation with RegisterEvent
 
-    @OneToMany(mappedBy = "event",fetch = FetchType.EAGER)
-    private List<QuestionEvent> questionEvents;  // Relation with QuestionEvent
+    //@OneToMany(mappedBy = "event",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List<QuestionEvent> questionEvents;  // Relation with QuestionEvent
 
-    @OneToMany(mappedBy = "event",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "event",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Donation> donations;  // Relation with Donation
 }

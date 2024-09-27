@@ -1,8 +1,10 @@
 package backend.project.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "registerEvents")
 public class RegisterEvent {
     @Id

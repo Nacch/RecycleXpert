@@ -21,6 +21,6 @@ public class EventType {
     private String description;
     private int rewards;
 
-    @OneToMany(mappedBy = "eventType",fetch = FetchType.EAGER)
-    private List<Event> events;  // Relation with Event
+    //@OneToMany(mappedBy = "eventType",fetch = FetchType.EAGER)
+    //private List<Event> events;  // Relation with Event
 }

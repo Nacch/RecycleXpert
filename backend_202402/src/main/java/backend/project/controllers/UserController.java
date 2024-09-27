@@ -1,3 +1,4 @@
+/*
 package backend.project.controllers;
 
 import backend.project.dtos.DTOToken;
@@ -63,3 +64,4 @@ public class UserController {
     }
 
 }
+*/

@@ -3,7 +3,7 @@ package backend.project.entities;
 import jakarta.persistence.*;
 
 import java.util.List;
-
+/*
 @Entity
 @Table(name = "typeDonations")
 public class TypeDonation {
@@ -19,3 +19,4 @@ public class TypeDonation {
     @OneToMany(mappedBy = "typeDonation",fetch = FetchType.EAGER)
     private List<Donation> donations;  // Relation with Donation
 }
+*/
