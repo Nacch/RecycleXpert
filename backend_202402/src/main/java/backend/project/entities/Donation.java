@@ -1,11 +1,11 @@
 package backend.project.entities;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
+@Setter
+@Getter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,9 +16,11 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String donorName;
+    private String donorEmail;
+    private String creditCard; // Puede ser un token si se usa un servicio de procesamiento de pagos
     private double amount;
-    private String donationType;
-    private Date date;
+    private Date donationDate;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
@@ -35,5 +37,6 @@ public class Donation {
     @ManyToOne
     @JoinColumn(name = "typeDonation_id")
     private TypeDonation typeDonation;
+
 
 }
