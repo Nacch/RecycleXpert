@@ -27,6 +27,7 @@ public class VolunteerController {
     public ResponseEntity<List<Volunteer>> listAllVolunteer() {
         return new ResponseEntity<List<Volunteer>>(volunteerService.listAllVolunteers(),HttpStatus.OK);
     }
+
     // Registrar un nuevo voluntario
     @PostMapping("/volunteers/register")
     public ResponseEntity<Volunteer> insertVolunteer(@RequestBody VolunteerDTO volunteerdto) {

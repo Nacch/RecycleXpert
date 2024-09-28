@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-/*
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,4 +23,3 @@ public class Sponsor {
     @OneToMany(mappedBy = "cSponsor",fetch = FetchType.EAGER)
     private List<Donation> donations;  // Relation con Donation
 }
-*/

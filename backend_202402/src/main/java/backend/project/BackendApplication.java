@@ -8,7 +8,7 @@ import backend.project.repositories.OrganizationRepository;
 import backend.project.repositories.UserRepository;
 import backend.project.repositories.VolunteerRepository;
 import backend.project.services.AuthorityService;
-//import backend.project.services.UserService;
+import backend.project.services.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,7 +27,7 @@ public class BackendApplication {
 		VolunteerRepository volunteerRepository,
 		UserRepository userRepository,
 		OrganizationRepository organizationRepository,
-		//UserService userService,
+		UserService userService,
 		AuthorityService authorityService
 
 	) {
@@ -36,9 +36,10 @@ public class BackendApplication {
 			authorityService.addAuthority(new Authority(0L,"CONSULTA",null));
 
 			// Crear un usuario
-			//userService.addUser(new UserDTO(0L,"Frank","123","REGISTRO"));
-			//userService.addUser(new UserDTO(0L,"Luis","321","CONSULTA"));
-			//userService.addUser(new UserDTO(0L,"Moises","322","CONSULTA"));
+			userService.addUser(new UserDTO(0L,"Frank","123","REGISTRO"));
+			userService.addUser(new UserDTO(0L,"Luis","321","CONSULTA"));
+
+
 
 		};
 

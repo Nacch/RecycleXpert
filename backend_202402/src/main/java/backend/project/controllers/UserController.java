@@ -1,4 +1,3 @@
-/*
 package backend.project.controllers;
 
 import backend.project.dtos.DTOToken;
@@ -32,7 +31,6 @@ public class UserController {
 
     //HTTP: GET, POST, PUT, DELETE
 
-
     @PostMapping("/users/register")
     public ResponseEntity<User> registerUser(@RequestBody UserDTO userdto ) {
         User newUser = userService.addUser(userdto);
@@ -64,4 +62,3 @@ public class UserController {
     }
 
 }
-*/

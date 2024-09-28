@@ -1,4 +1,3 @@
-/*
 package backend.project.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,11 +49,11 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests(
                 (auth) -> auth
                         .requestMatchers(AUTH_WHITELIST).permitAll() // Permitir las rutas de la lista blanca sin autenticación
-                        .requestMatchers(HttpMethod.POST, "/api/users/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/users/**").permitAll()
+                        .requestMatchers("/api/users/login").permitAll()
+                        .requestMatchers("/api/users/register").permitAll()
+                        .requestMatchers("/volunteers/register").hasAnyAuthority("REGISTRO")
                         .requestMatchers(HttpMethod.GET, "/users/{id}").permitAll()
-
-                        .anyRequest().authenticated() // Proteger todas las demás rutas
+                        .anyRequest().authenticated() //
         );
 
         // Política sin estado para las sesiones (JWT no usa sesiones)
@@ -76,4 +75,3 @@ public class SecurityConfiguration {
     }
 }
 
-*/

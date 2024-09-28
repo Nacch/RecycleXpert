@@ -27,13 +27,13 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     @Override
     public Authority findByName(String name) {
-
         Authority authorityFound = authorityRepository.findByName(name);
         if (authorityFound == null) {
             throw new ResourceNotFoundException("Authority with name: " + name + " does not exist");
         }
-        return null;
+        return authorityFound;
     }
+
 
 }
 

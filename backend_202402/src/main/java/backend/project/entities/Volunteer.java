@@ -28,26 +28,30 @@ public class Volunteer {
 
     // Relation con la entidad Rango (ManyToOne)
     @ManyToOne
-    @JoinColumn(name = "rango_id", nullable = true)
+    @JoinColumn(name = "rango_id")
     private Rango rango;
 
     //______________________________________________
     // Relation con la entidad User (ManyToOne)
     //VERIFIER ESTA RELATION WITH USER, según el profesor debe ser ONE A ONE
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = true)
+    @JoinColumn(name = "user_id")
     private User user;
     // _____________________________________________
 
     // Relation con Consultations (OneToMany)
-    @OneToMany(mappedBy = "volunteer",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "volunteer",fetch = FetchType.EAGER)
     private List<Consultation> consultations;
 
+    // Relation con Donation (OneToMany)
+    @OneToMany(mappedBy = "volunteer",fetch = FetchType.EAGER)
+    private List<Donation> donations;
+
     // Relation con QuestionEvent (OneToMany)
-    @OneToMany(mappedBy = "volunteer",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "volunteer",fetch = FetchType.EAGER)
     private List<QuestionEvent> questionEvents;
 
     // Relation con RegisterEvent (OneToMany)
-    @OneToMany(mappedBy = "volunteer",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "volunteer",fetch = FetchType.EAGER)
     private List<RegisterEvent> registerEvents;
 }
