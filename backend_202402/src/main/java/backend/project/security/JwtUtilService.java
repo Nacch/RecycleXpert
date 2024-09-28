@@ -1,5 +1,5 @@
+/*
 package backend.project.security;
-
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -67,3 +67,4 @@ public class JwtUtilService {
         return createToken(securityUser.getUsername(), claims);
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package backend.project.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,3 +76,4 @@ public class SecurityConfiguration {
     }
 }
 
+*/

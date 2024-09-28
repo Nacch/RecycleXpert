@@ -1,6 +1,7 @@
 package backend.project.services;
 
 import backend.project.dtos.VolunteerDTO;
+import backend.project.entities.Event;
 import backend.project.entities.Volunteer;
 
 import java.util.List;
@@ -13,4 +14,5 @@ public interface VolunteerService {
     public void deleteVolunteer(Long id);
     public Volunteer updateVolunteer(Long id, VolunteerDTO volunteerdto);
     //public Volunteer updateVolunteer(Long id, Volunteer volunteer);
+    public List<Event> getVolunteerRegisteredEvents(Long volunteerId);
 }

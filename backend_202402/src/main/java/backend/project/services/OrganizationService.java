@@ -6,12 +6,9 @@ import backend.project.entities.Organization;
 import java.util.List;
 
 public interface OrganizationService {
-
-    OrganizationDTO registerOrganization(OrganizationDTO organizationDTO);
-
-    List<OrganizationDTO> getAllOrganizations();
-    OrganizationDTO getOrganizationById(Long id);
-    void deleteOrganization(Long id);
-
-
+    public Organization createOrganization(Organization organization);
+    public Organization updateOrganization(Long id, Organization updatedOrganization);
+    public void deleteOrganization(Long id);
+    public Organization getOrganizationById(Long id);
+    public List<Organization> getAllOrganizations();
 }

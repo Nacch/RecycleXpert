@@ -16,24 +16,13 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String donorName;
+    private String donorEmail;
+    private String creditCard; // Puede ser un token si se usa un servicio de procesamiento de pagos
     private double amount;
-    private String donationType;
-    private Date date;
+    private Date donationDate;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
-
-    @ManyToOne
-    @JoinColumn(name = "volunteer_id")
-    private Volunteer volunteer;
-
-    @ManyToOne
-    @JoinColumn(name = "Sponsor_id")
-    private Sponsor cSponsor;
-
-    @ManyToOne
-    @JoinColumn(name = "typeDonation_id")
-    private TypeDonation typeDonation;
-
 }
