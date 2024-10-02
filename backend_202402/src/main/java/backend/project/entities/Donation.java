@@ -1,11 +1,11 @@
 package backend.project.entities;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
+@Setter
+@Getter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,4 +25,18 @@ public class Donation {
     @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
+
+    @ManyToOne
+    @JoinColumn(name = "volunteer_id")
+    private Volunteer volunteer;
+
+    @ManyToOne
+    @JoinColumn(name = "Sponsor_id")
+    private Sponsor cSponsor;
+
+    @ManyToOne
+    @JoinColumn(name = "typeDonation_id")
+    private TypeDonation typeDonation;
+
+
 }

@@ -1,5 +1,3 @@
-
-/*
 package backend.project.serviceimpl;
 
 import backend.project.dtos.UserDTO;
@@ -54,10 +52,13 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     private List<Authority> authoritiesFromString(String authoritiesString){
         List<Authority> authorityList = new ArrayList<>();
         List<String> authorityStringList = List.of(authoritiesString.split(";"));
-        for(String auString : authorityStringList) {
-            Authority authorityFound = authorityService.findByName(auString);
-            if (authorityFound!=null) {
-                authorityList.add(authorityFound);
+
+        for (String authorityName : authorityStringList) {
+            Authority authority = authorityService.findByName(authorityName);
+            if (authority != null) {
+                authorityList.add(authority);
+            } else {
+                throw new ResourceNotFoundException("Authority with name: " + authorityName + " does not exist");
             }
         }
         return authorityList;
@@ -76,4 +77,3 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         return new SecurityUser(this.findByUsername(username));
     }
 }
-*/

@@ -1,5 +1,6 @@
 package backend.project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Authority {
 
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "authorities")
     private List<User> users;
 }

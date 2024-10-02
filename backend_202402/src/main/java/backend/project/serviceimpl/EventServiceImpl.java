@@ -31,7 +31,7 @@ public class EventServiceImpl implements EventService {
             existingEvent.setCapacity(updatedEvent.getCapacity());
             existingEvent.setOrganization(updatedEvent.getOrganization());
             //existingEvent.setEventType(updatedEvent.getEventType());
-            // Si es necesario, puedes también actualizar las relaciones como registerEvents, questionEvents y donations
+            // Si es necesario, se actualiza las relaciones como registerEvents, questionEvents y donations
             return eventRepository.save(existingEvent);
         } else {
             throw new RuntimeException("Event with id " + id + " not found");

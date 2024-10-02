@@ -1,4 +1,3 @@
-/*
 package backend.project.security;
 
 import backend.project.entities.User;
@@ -25,7 +24,7 @@ public class SecurityUser implements UserDetails {
         }
         return securityAuthorityListauthorityList;
         */
-/*
+
         return user.getAuthorities().stream().map(SecurityAuthority::new).toList();
     }
     @Override
@@ -56,4 +55,3 @@ public class SecurityUser implements UserDetails {
     @Override
     public boolean isEnabled() {return user.isActive();}
 }
-*/

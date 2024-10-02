@@ -1,4 +1,3 @@
-/*
 package backend.project.security;
 
 import backend.project.entities.Authority;
@@ -18,4 +17,3 @@ public class SecurityAuthority implements GrantedAuthority {
     }
 
 }
-*/

@@ -51,5 +51,4 @@ public class OrganizationController {
         organizationService.deleteOrganization(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }
