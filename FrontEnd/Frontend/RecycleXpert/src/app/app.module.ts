@@ -11,6 +11,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MenuComponent } from './components/menu/menu.component';
 import { RegisterVolunteerComponent } from './components/register-volunteer/register-volunteer.component';
 import { EventRegisterComponent } from './components/event-register/event-register.component';
+import { VolunteerListarComponent } from './components/volunteer-listar/volunteer-listar.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { EventRegisterComponent } from './components/event-register/event-regist
     AppComponent,
     MenuComponent,
     RegisterVolunteerComponent,
-    EventRegisterComponent
+    EventRegisterComponent,
+    VolunteerListarComponent
   ],
   imports: [
     BrowserModule,
