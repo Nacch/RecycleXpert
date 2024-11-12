@@ -1,9 +1,5 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
-  MatButton,
-  MatButtonModule
-} from "./chunk-2JDDW7YE.js";
-import {
   Overlay,
   OverlayConfig,
   OverlayModule
@@ -24,6 +20,10 @@ import {
   trigger
 } from "./chunk-AR5IMGEL.js";
 import "./chunk-J5VE23YE.js";
+import {
+  MatButton,
+  MatButtonModule
+} from "./chunk-2JDDW7YE.js";
 import {
   BreakpointObserver,
   Breakpoints,

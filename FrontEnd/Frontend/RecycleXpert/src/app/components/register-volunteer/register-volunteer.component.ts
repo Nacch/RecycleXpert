@@ -47,7 +47,7 @@ export class RegisterVolunteerComponent {
       address: this.addForm.get("address")?.value,
       points: this.addForm.get("points")?.value,
       category: this.addForm.get("category")?.value,
-      level: this.addForm.get("level")?.value
+      level: this.addForm.get("level")?.value  
     };
   
     // Llamada al servicio para registrar al voluntario

@@ -15,6 +15,7 @@ export class VolunteerListarComponent {
   displayedColumns: string[] = ['id', 'volunteerName', 'email', 'address', 'points', 'category', 'level', 'actions'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dsVolunteer.filter = filterValue.trim().toLowerCase();

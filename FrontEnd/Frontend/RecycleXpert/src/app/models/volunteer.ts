@@ -6,9 +6,6 @@ export interface Volunteer{
     points: number;
     category: String;
     level: number;
-    
-    //private Long rangoId;  // Foreign key reference to Rango
-    //private Long userId;   // Foreign key reference to User
-
-
+    rangoId?: number;  // Optional
+    userId?: number;   // Optional
 }

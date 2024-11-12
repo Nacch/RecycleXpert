@@ -17,11 +17,11 @@ export class EventService {
     return this.http.get<Evento[]>(this.servidor+"/"+this.recurso);
   }
   // Para buscar en el registrar y pueda verificar el editar
-  getRent(id: number){
+  getEvents(id: number){
     return this.http.get<Evento>(this.servidor+"/"+this.recurso+"/"+id.toString());
   }
   //Para añadir
-  addRent(evento : Evento){
+  addEvent(evento : Evento){
     return this.http.post<Evento>(this.servidor+"/"+this.recurso, evento);
   }
   //Para eliminar

@@ -1,1 +1,60 @@
-<h6>Evento</h6>
+<p>Registrar de Evento</p>
+
+<form [formGroup]="addFormEvent">
+  <!-- Nombre del Evento -->
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre del Evento</mat-label>
+    <input matInput formControlName="eventName" required>
+    <mat-error *ngIf="addFormEvent.get('eventName')?.hasError('required')">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <!-- Descripción del Evento -->
+  <mat-form-field appearance="fill">
+    <mat-label>Descripción</mat-label>
+    <input matInput formControlName="description" required>
+    <mat-error *ngIf="addFormEvent.get('description')?.hasError('required')">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <!-- Fecha del Evento -->
+  <mat-form-field>
+    <mat-label>Fecha del Evento</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="date" required>
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="addFormEvent.get('date')?.hasError('required')">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <!-- Ubicación del Evento -->
+  <mat-form-field appearance="fill">
+    <mat-label>Ubicación</mat-label>
+    <input matInput formControlName="location" required>
+    <mat-error *ngIf="addFormEvent.get('location')?.hasError('required')">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <!-- Capacidad -->
+  <mat-form-field appearance="fill">
+    <mat-label>Capacidad</mat-label>
+    <input matInput type="number" formControlName="capacity" required min="1">
+    <mat-error *ngIf="addFormEvent.get('capacity')?.hasError('required')">Este campo es obligatorio</mat-error>
+    <mat-error *ngIf="addFormEvent.get('capacity')?.hasError('min')">Debe ser al menos 1 persona</mat-error>
+  </mat-form-field>
+
+  <!-- Organización (Opcional) -->
+  <mat-form-field appearance="fill">
+    <mat-label>Organización</mat-label>
+    <input matInput formControlName="organizationId">
+  </mat-form-field>
+
+  <!-- Tipo de Evento (Opcional) -->
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo de Evento</mat-label>
+    <input matInput formControlName="eventTypeId">
+  </mat-form-field>
+
+  <!-- Botones de Acción -->
+  <div class="action-buttons">
+    <button mat-raised-button color="primary" (click)="RegistrarEvento()" [disabled]="addFormEvent.invalid">Grabar</button>
+    <button mat-raised-button color="warn" (click)="onCancel()">Cancelar</button>
+  </div>
+</form>
