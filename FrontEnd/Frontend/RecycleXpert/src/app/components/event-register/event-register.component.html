@@ -1,4 +1,4 @@
-<p>Registrar de Evento</p>
+<h6>Registrar de Evento</h6>
 
 <form [formGroup]="addFormEvent">
   <!-- Nombre del Evento -->
@@ -39,19 +39,23 @@
     <mat-error *ngIf="addFormEvent.get('capacity')?.hasError('required')">Este campo es obligatorio</mat-error>
     <mat-error *ngIf="addFormEvent.get('capacity')?.hasError('min')">Debe ser al menos 1 persona</mat-error>
   </mat-form-field>
-
+  <br><br>
   <!-- Organización (Opcional) -->
   <mat-form-field appearance="fill">
     <mat-label>Organización</mat-label>
     <input matInput formControlName="organizationId">
   </mat-form-field>
 
-  <!-- Tipo de Evento (Opcional) -->
-  <mat-form-field appearance="fill">
+  <!-- Organización (Select) -->
+  <mat-form-field>    
     <mat-label>Tipo de Evento</mat-label>
-    <input matInput formControlName="eventTypeId">
-  </mat-form-field>
-
+    <mat-select  formControlName="eventTypeId">
+        <mat-option *ngFor="let eventType of eventType" [value]="eventType.id">
+            {{eventType.eventTypeName}}
+        </mat-option>
+    </mat-select>    
+</mat-form-field>
+<br><br>
   <!-- Botones de Acción -->
   <div class="action-buttons">
     <button mat-raised-button color="primary" (click)="RegistrarEvento()" [disabled]="addFormEvent.invalid">Grabar</button>

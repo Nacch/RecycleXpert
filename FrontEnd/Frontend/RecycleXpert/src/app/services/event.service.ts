@@ -13,11 +13,11 @@ export class EventService {
   
   constructor(private http: HttpClient) {}
      //Para mostar en Lista o Listar
-  getEvent(){
+  getEvents(){
     return this.http.get<Evento[]>(this.servidor+"/"+this.recurso);
   }
   // Para buscar en el registrar y pueda verificar el editar
-  getEvents(id: number){
+  getEvent(id: number){
     return this.http.get<Evento>(this.servidor+"/"+this.recurso+"/"+id.toString());
   }
   //Para añadir
