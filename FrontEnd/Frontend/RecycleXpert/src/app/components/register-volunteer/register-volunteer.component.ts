@@ -31,7 +31,7 @@ export class RegisterVolunteerComponent {
     });
 
   }
-  RegistrarVolunteer(): void {
+  registrarVoluntario(): void {
 
 
 

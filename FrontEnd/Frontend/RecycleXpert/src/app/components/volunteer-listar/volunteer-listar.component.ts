@@ -10,12 +10,10 @@ import { VolunteerService } from '../../services/volunteer.service';
   styleUrl: './volunteer-listar.component.css'
 })
 export class VolunteerListarComponent {
-  cant_alquilers: number=0;
+  cant_Volunteer: number=0;
   dsVolunteer = new MatTableDataSource<Volunteer>();
-
-  displayedColumns: string[] = ['id', 'clientName', 'rentDays', 'rentDate', 'pricePerDay', 'insurance', 'endDate', 'totalPrice', 'Acciones'];
+  displayedColumns: string[] = ['id', 'volunteerName', 'email', 'address', 'points', 'category', 'level', 'actions'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -25,6 +23,8 @@ export class VolunteerListarComponent {
 
   ngOnInit(): void {
     this.loadVolunteer();
+    this.dsVolunteer.paginator = this.paginator;
+
 
   }
   ngAfterViewInit(): void {
@@ -35,7 +35,7 @@ export class VolunteerListarComponent {
     this.volunteerService.getVolenteer().subscribe({
       next:(data:Volunteer[]) =>{
         this.dsVolunteer.data = data;
-        this.cant_alquilers = data.length;
+        this.cant_Volunteer = data.length;
       },
       error:(err) =>{
         console.log(err);
