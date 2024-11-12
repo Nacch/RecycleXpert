@@ -25,7 +25,6 @@ export class VolunteerListarComponent {
     this.loadVolunteer();
     this.dsVolunteer.paginator = this.paginator;
 
-
   }
   ngAfterViewInit(): void {
     this.dsVolunteer.paginator = this.paginator!;
