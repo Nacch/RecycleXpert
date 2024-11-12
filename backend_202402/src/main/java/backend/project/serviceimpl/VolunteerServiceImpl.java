@@ -32,7 +32,11 @@ public class VolunteerServiceImpl implements VolunteerService {
     //Modificar esta parte para que Voluntarios liste viendo si tiene uuario
     @Override
     public List<Volunteer> listAllVolunteers() {
+        return volunteerRepository.findAll();
+
+      /*
         List<Volunteer> volunteerList = volunteerRepository.findAll();
+
         // Iteramos sobre la lista de voluntarios para revisar la relación con el usuario
         for (Volunteer v : volunteerList) {
             // Verificamos si el voluntario tiene un usuario asociado
@@ -47,6 +51,7 @@ public class VolunteerServiceImpl implements VolunteerService {
             }
         }
         return volunteerList;
+  */
     }
 
     // .-...
@@ -71,6 +76,18 @@ public class VolunteerServiceImpl implements VolunteerService {
 
     @Override
     public void deleteVolunteer(Long id){
+        //Solo esto es prueba
+        Volunteer volunteerFound = volunteerRepository.findById(id).orElse(null);
+        if (volunteerFound==null) {
+            throw new ResourceNotFoundException("No se puede encontrar la venta con id: "+ id);
+        }
+        volunteerRepository.delete(volunteerFound);
+
+
+
+
+        /*
+
         Volunteer volunteer = findById(id);
         if(volunteer != null){
             if(volunteer.getUser().isActive()){
@@ -80,6 +97,8 @@ public class VolunteerServiceImpl implements VolunteerService {
                 throw new InvalidActionException("Volunteer with id: " + id + " can not be deleted because it has FK dependencies");
             }
         }
+
+         */
     }
     @Override
     public Volunteer updateVolunteer(Long id, VolunteerDTO volunteerdto) {
