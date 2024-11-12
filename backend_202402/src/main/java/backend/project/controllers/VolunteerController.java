@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 // "http://localhost:8080/api"
@@ -27,14 +28,6 @@ public class VolunteerController {
     public ResponseEntity<List<Volunteer>> listAllVolunteer() {
         return new ResponseEntity<List<Volunteer>>(volunteerService.listAllVolunteers(),HttpStatus.OK);
     }
-
-    // Registrar un nuevo voluntario
-    @PostMapping("/volunteers/register")
-    public ResponseEntity<Volunteer> insertVolunteer(@RequestBody VolunteerDTO volunteerdto) {
-        Volunteer newVolunteer = volunteerService.addVolunteer(volunteerdto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newVolunteer);
-    }
-
     // Obtener un voluntario por ID
     @GetMapping("/volunteers/{id}")
     public ResponseEntity<Volunteer> getVolunteerById(@PathVariable Long id) {
@@ -44,6 +37,12 @@ public class VolunteerController {
         }
         return ResponseEntity.ok(volunteerFound);
     }
+    // Registrar un nuevo voluntario
+    @PostMapping("/volunteers/register")
+    public ResponseEntity<Volunteer> insertVolunteer(@RequestBody VolunteerDTO volunteerdto) {
+        Volunteer newVolunteer = volunteerService.addVolunteer(volunteerdto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newVolunteer);
+    }
 
     // Eliminar un voluntario por ID
     @DeleteMapping("/volunteers/{id}")
@@ -51,6 +50,7 @@ public class VolunteerController {
         volunteerService.deleteVolunteer(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     // Listar todos los eventos a los que un voluntario está inscrito
     @GetMapping("/listEventsperVolunteer/{volunteerId}/events")
     public ResponseEntity<List<Event>> getVolunteerRegisteredEvents(@PathVariable Long volunteerId) {

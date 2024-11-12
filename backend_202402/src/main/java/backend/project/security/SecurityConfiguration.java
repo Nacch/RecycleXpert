@@ -46,14 +46,17 @@ public class SecurityConfiguration {
         http.csrf(AbstractHttpConfigurer::disable);
 
         // Configuración de autorización
-        http.authorizeHttpRequests(
-                (auth) -> auth
+        http.authorizeHttpRequests((auth) -> auth
+                        .anyRequest().permitAll()
+                 /*
                         .requestMatchers(AUTH_WHITELIST).permitAll() // Permitir las rutas de la lista blanca sin autenticación
                         .requestMatchers("/api/users/login").permitAll()
                         .requestMatchers("/api/users/register").permitAll()
                         .requestMatchers("/volunteers/register").hasAnyAuthority("REGISTRO")
                         .requestMatchers(HttpMethod.GET, "/users/{id}").permitAll()
+                        .requestMatchers("/api/createOrganization").hasAnyAuthority("ADMINISTRADOR")
                         .anyRequest().authenticated() //
+                           */
         );
 
         // Política sin estado para las sesiones (JWT no usa sesiones)
