@@ -6,6 +6,5 @@ export interface Volunteer{
     points: number;
     category: String;
     level: number;
-    rangoId?: number;  // Optional
-    userId?: number;   // Optional
+
 }

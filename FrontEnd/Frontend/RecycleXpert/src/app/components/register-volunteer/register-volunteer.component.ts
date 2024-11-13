@@ -26,6 +26,7 @@ export class RegisterVolunteerComponent {
 
   CrearFormulario(){
     this.addForm = this.fb.group({
+        id:[""],
         volunteerName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         address: ['', Validators.required],

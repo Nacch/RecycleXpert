@@ -32,6 +32,18 @@ export class EventRegisterComponent {
     this.CrearFormulario();
   }
 
+  cargarTiposDeEventos(): void {
+    this.eventTypeService.getEventTypes().subscribe({
+      next:(data: EventType[]) => {
+        this.eventType = data;
+      },
+      error: (err) => {
+        console.error("Error al cargar tipos de eventos", err);
+        this.snackBar.open("Error al cargar tipos de eventos", "Ok", { duration: 3000 });
+      }
+    });
+  }
+
   CrearFormulario(){
     this.addFormEvent = this.fb.group({
       eventName: ['', Validators.required],
@@ -43,25 +55,40 @@ export class EventRegisterComponent {
       eventTypeId: ['']
     });
 
-    //Aqui elige la parte de editar y Añadir - Aún falta implementar
-    this.eventId=parseInt(this.activatedRoute.snapshot.params["id"]);
+    this.eventId = parseInt(this.activatedRoute.snapshot.params["id"]);
 
-    if (this.eventId>0 && this.eventId!=undefined) {
-      //Cuando queremos actualizar
+    if (this.eventId > 0 && this.eventId != undefined) {
+        // Cargar los datos para edición
+        this.eventService.getEvent(this.eventId).subscribe({
+            next: (dataEvent: Evento) => {
+                // Asignar valores al formulario
+                this.addFormEvent.patchValue({
+                    eventName: dataEvent.eventName,
+                    description: dataEvent.description,
+                    date: dataEvent.date,
+                    location: dataEvent.location,
+                    capacity: dataEvent.capacity,
+                    organizationId: dataEvent.organizationId,
+                    eventTypeId: dataEvent.eventTypeId
+                });
 
-      this.eventService.getEvent(this.eventId).subscribe({
-
-
-      })
-
+                // Obtener tipos de eventos (si usas un dropdown o lista)
+                this.eventTypeService.getEventTypes().subscribe({
+                    next: (dataEventTypes: EventType[]) => {
+                        this.eventType = dataEventTypes;
+                        // Aquí puedes establecer el `eventTypeId` en el formulario si es necesario
+                    }
+                });
+            }
+        });
+    } else {
+        // Si es un nuevo evento, podrías cargar la lista de tipos de eventos también aquí
+        this.eventTypeService.getEventTypes().subscribe({
+            next: (dataEventTypes: EventType[]) => {
+                this.eventType = dataEventTypes;
+            }
+        });
     }
-    
-  }
-
-
-  loadEventos(event:any){
-    let eventTypeId:number=event.value;
-
 
   }
 
@@ -71,19 +98,15 @@ export class EventRegisterComponent {
       return;
     }
 
-
-
-
-
     const evento: Evento = {
       id: 0, 
       eventName: this.addFormEvent.get("eventName")?.value,
       description: this.addFormEvent.get("description")?.value,
       date: this.addFormEvent.get("date")?.value,
       location: this.addFormEvent.get("location")?.value,
-      capacity: this.addFormEvent.get("capacity")?.value,
-      //organizationId: this.addFormEvent.get("organizationId")?.value,
-      eventTypeId: this.addFormEvent.get("eventTypeId")?.value
+      capacity: this.addFormEvent.get('capacity')?.value,
+      organizationId: this.addFormEvent.get('organizationId')?.value,
+      eventTypeId: this.addFormEvent.get('eventTypeId')?.value
     };
 
     this.eventService.addEvent(evento).subscribe({

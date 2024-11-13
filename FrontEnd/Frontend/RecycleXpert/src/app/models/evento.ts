@@ -6,5 +6,5 @@ export interface Evento{
     location: string;
     capacity: number;
     organizationId?: number;  // Opcional: si deseas vincular a la organización
-    eventTypeId?: number;     // Opcional: si deseas vincular a un tipo de evento
+    eventTypeId: number;     // Opcional: si deseas vincular a un tipo de evento
 }

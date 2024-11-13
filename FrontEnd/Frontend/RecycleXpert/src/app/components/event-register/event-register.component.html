@@ -47,14 +47,15 @@
   </mat-form-field>
 
   <!-- Organización (Select) -->
-  <mat-form-field>    
+  <mat-form-field>
     <mat-label>Tipo de Evento</mat-label>
-    <mat-select  formControlName="eventTypeId">
-        <mat-option *ngFor="let eventType of eventType" [value]="eventType.id">
-            {{eventType.eventTypeName}}
-        </mat-option>
-    </mat-select>    
-</mat-form-field>
+    <mat-select formControlName="eventTypeId">
+      <mat-option *ngFor="let type of eventType" [value]="type.id">
+        {{ type.eventTypeName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
 <br><br>
   <!-- Botones de Acción -->
   <div class="action-buttons">
