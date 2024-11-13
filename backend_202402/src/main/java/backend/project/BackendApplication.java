@@ -1,14 +1,17 @@
 package backend.project;
 
+import backend.project.dtos.EventTypeDTO;
 import backend.project.dtos.UserDTO;
 import backend.project.dtos.VolunteerDTO;
 import backend.project.entities.Authority;
+import backend.project.entities.EventType;
 import backend.project.entities.User;
 import backend.project.repositories.AuthorityRepository;
 import backend.project.repositories.OrganizationRepository;
 import backend.project.repositories.UserRepository;
 import backend.project.repositories.VolunteerRepository;
 import backend.project.services.AuthorityService;
+import backend.project.services.EventTypeService;
 import backend.project.services.UserService;
 import backend.project.services.VolunteerService;
 import org.springframework.boot.CommandLineRunner;
@@ -31,7 +34,8 @@ public class BackendApplication {
 		OrganizationRepository organizationRepository,
 		UserService userService,
 		AuthorityService authorityService,
-		VolunteerService volunteerService
+		VolunteerService volunteerService,
+		EventTypeService eventTypeService
 
 	) {
 		return args -> {
@@ -52,6 +56,13 @@ public class BackendApplication {
 			volunteerService.addVolunteer(new VolunteerDTO(0L, "Juan benites", "pedro@example.com", "Calle Luna 101", 100, "Salud", 3, 4L, 4L));
 			volunteerService.addVolunteer(new VolunteerDTO(0L, "Pedro Martínez", "pedro@example.com", "Calle Luna 101", 100, "Salud", 3, 4L, 4L));
 
+
+			// Crear tipos de eventos
+			eventTypeService.addEventType(new EventType(0L, "Reciclaje", "Evento de reciclaje comunitario", 10, null));
+			eventTypeService.addEventType(new EventType(0L, "Educación", "Charla educativa", 20, null));
+			eventTypeService.addEventType(new EventType(0L, "Salud", "Campaña de salud", 15, null));
+
+			System.out.println("Tipos de eventos creados con éxito.");
 			System.out.println("Voluntarios de prueba creados con éxito.");
 		};
 
