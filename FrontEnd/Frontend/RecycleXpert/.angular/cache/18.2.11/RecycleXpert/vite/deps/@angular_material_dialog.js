@@ -4,10 +4,7 @@ import {
   OverlayContainer,
   OverlayModule,
   OverlayRef
-} from "./chunk-REOGII4T.js";
-import {
-  CdkScrollable
-} from "./chunk-PRHQSODF.js";
+} from "./chunk-WMLBT5T5.js";
 import {
   BasePortalOutlet,
   CdkPortalOutlet,
@@ -25,6 +22,9 @@ import {
   transition,
   trigger
 } from "./chunk-KDHQ7DZM.js";
+import {
+  CdkScrollable
+} from "./chunk-PRHQSODF.js";
 import "./chunk-GUUJMXD4.js";
 import {
   A11yModule,

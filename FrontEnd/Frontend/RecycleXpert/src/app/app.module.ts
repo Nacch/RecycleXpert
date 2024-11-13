@@ -15,6 +15,8 @@ import { VolunteerListarComponent } from './components/volunteer-listar/voluntee
 import { EventTypeRegisterComponent } from './components/event-type-register/event-type-register.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { DatePipe } from '@angular/common';  // Agrega esta importación
+
 
 
 @NgModule({
@@ -39,7 +41,10 @@ import { LoginComponent } from './components/login/login.component';
     provideClientHydration(),
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
+    DatePipe, 
+  
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
