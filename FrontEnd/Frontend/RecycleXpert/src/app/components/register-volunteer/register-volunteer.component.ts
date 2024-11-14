@@ -64,7 +64,7 @@ export class RegisterVolunteerComponent {
   }
   
   onCancel(): void {
-    this.router.navigate(['/volunteer-listar']);
+    this.router.navigate(['/login']);
   }
 
 }
