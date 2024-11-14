@@ -1,1 +1,29 @@
-<p>login works!</p>
+<h2 class="login-title">Bienvenido de nuevo!</h2>
+
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+
+  <!-- Campo para el nombre de usuario -->
+  <mat-form-field class="full-width">
+    <mat-label>Nombre de usuario</mat-label>
+    <input matInput formControlName="userName" placeholder="Ingrese su nombre de usuario">
+    <mat-error *ngIf="loginForm.get('userName')?.hasError('required')">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <!-- Campo para la contraseña -->
+  <mat-form-field class="full-width">
+    <mat-label>Contraseña</mat-label>
+    <input matInput formControlName="password" [type]="ocultarPass ? 'password' : 'text'" placeholder="Ingrese su contraseña">
+    <button mat-icon-button matSuffix (click)="ocultarPass = !ocultarPass" aria-label="Mostrar/ocultar contraseña">
+      <mat-icon>{{ ocultarPass ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+    <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <!-- Acciones -->
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="login-btn">Login</button>
+    <span> - </span>
+    <button mat-raised-button color="accent" type="button" (click)="cancelar()" class="cancel-btn">Cancelar</button>
+  </div>
+  
+</form>
