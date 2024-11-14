@@ -1,5 +1,6 @@
 package backend.project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,5 +23,6 @@ public class EventType {
     private int rewards;
 
     @OneToMany(mappedBy = "eventType",fetch = FetchType.EAGER)
+    @JsonIgnore // Ignorar esta propiedad al serializar
     private List<Event> events;  // Relation with Event
 }

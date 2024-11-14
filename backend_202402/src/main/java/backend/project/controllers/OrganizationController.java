@@ -1,9 +1,8 @@
 package backend.project.controllers;
 
-import backend.project.dtos.OrganizationDTO;
 import backend.project.entities.Organization;
 import backend.project.serviceimpl.OrganizationServiceImpl;
-import backend.project.services.OrganizationService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,28 +18,28 @@ public class OrganizationController {
     private OrganizationServiceImpl organizationService;
 
     // Obtener todas las organizaciones
-    @GetMapping("/getOrganizations")
+    @GetMapping("/Organizations")
     public ResponseEntity<List<Organization>> getAllOrganizations() {
         List<Organization> organizations = organizationService.getAllOrganizations();
         return new ResponseEntity<>(organizations, HttpStatus.OK);
     }
 
     // Obtener una organización por su ID
-    @GetMapping("/getOrganizationbyID/{id}")
+    @GetMapping("/Organizations/{id}")
     public ResponseEntity<Organization> getOrganizationById(@PathVariable Long id) {
         Organization organization = organizationService.getOrganizationById(id);
         return new ResponseEntity<>(organization, HttpStatus.OK);
     }
 
     // Crear una nueva organización
-    @PostMapping("/createOrganization")
+    @PostMapping("/Organizations")
     public ResponseEntity<Organization> createOrganization(@RequestBody Organization organization) {
         Organization createdOrganization = organizationService.createOrganization(organization);
         return new ResponseEntity<>(createdOrganization, HttpStatus.CREATED);
     }
 
     // Modificar una organización existente
-    @PutMapping("/updateOrganization/{id}")
+    @PutMapping("/Organizations/{id}")
     public ResponseEntity<Organization> updateOrganization(@PathVariable Long id, @RequestBody Organization organization) {
         Organization updatedOrganization = organizationService.updateOrganization(id, organization);
         return new ResponseEntity<>(updatedOrganization, HttpStatus.OK);

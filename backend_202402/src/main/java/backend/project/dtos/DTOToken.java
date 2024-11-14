@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
+
 public class DTOToken {
     private String jwtToken;
     private Long user_id;

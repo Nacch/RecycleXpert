@@ -1,7 +1,6 @@
 package backend.project.controllers;
 
 import backend.project.entities.EventType;
-import backend.project.entities.Volunteer;
 import backend.project.services.EventTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

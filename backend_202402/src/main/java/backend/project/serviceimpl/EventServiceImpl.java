@@ -1,11 +1,16 @@
 package backend.project.serviceimpl;
 
+import backend.project.dtos.EventDTO;
 import backend.project.entities.Event;
+import backend.project.entities.EventType;
+import backend.project.exceptions.ResourceNotFoundException;
 import backend.project.repositories.EventRepository;
+import backend.project.repositories.EventTypeRepository;
 import backend.project.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,9 +19,27 @@ public class EventServiceImpl implements EventService {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    EventTypeRepository eventTypeRepository;
+    private Long id;
+
+    private String eventName;
+    private String description;
+    private Date date;
+    private String location;
+    private int capacity;
+
     // Crear un nuevo evento
     public Event createEvent(Event event) {
-        return eventRepository.save(event);
+        try {
+            EventType eventType = eventTypeRepository.findById(event.getEventType().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("EventType with id: " + event.getEventType().getId() + " not found"));
+            event.setEventType(eventType);
+            return eventRepository.save(event);
+        } catch (Exception e) {
+            e.printStackTrace(); // Imprime detalles del error en la consola
+            throw new RuntimeException("Error al crear el evento: " + e.getMessage()); // Propaga el error con detalles adicionales
+        }
     }
 
     // Modificar un evento existente

@@ -14,6 +14,10 @@ public class RegisterEventController {
     @Autowired
     private RegisterEventServiceImpl registerEventService;
 
+
+    // Añadir un GET de mostrar
+
+
     // Registrar un voluntario en un evento
     @PostMapping("/register")
     public ResponseEntity<RegisterEvent> registerVolunteerToEvent(

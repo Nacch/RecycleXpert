@@ -1,5 +1,6 @@
 package backend.project.controllers;
 
+import backend.project.dtos.EventDTO;
 import backend.project.entities.Event;
 import backend.project.serviceimpl.EventServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class EventController {
     }
 
     // Obtener un evento por su ID
-    @GetMapping("/{id}")
+    @GetMapping("/events/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable Long id) {
         Event event = eventService.getEventById(id);
         return new ResponseEntity<>(event, HttpStatus.OK);
@@ -33,8 +34,12 @@ public class EventController {
     // Crear un nuevo evento
     @PostMapping("/events")
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
-        Event createdEvent = eventService.createEvent(event);
-        return new ResponseEntity<>(createdEvent, HttpStatus.CREATED);
+        // Aquí se pasa el Event directamente al servicio
+        Event newEvent = eventService.createEvent(event);
+
+        // Retornamos el nuevo evento creado con un status 201
+        return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
+
     }
 
     // Modificar un evento existente

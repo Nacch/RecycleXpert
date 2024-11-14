@@ -38,7 +38,7 @@ public class VolunteerController {
         return ResponseEntity.ok(volunteerFound);
     }
     // Registrar un nuevo voluntario
-    @PostMapping("/volunteers/register")
+    @PostMapping("/volunteers")
     public ResponseEntity<Volunteer> insertVolunteer(@RequestBody VolunteerDTO volunteerdto) {
         Volunteer newVolunteer = volunteerService.addVolunteer(volunteerdto);
         return ResponseEntity.status(HttpStatus.CREATED).body(newVolunteer);

@@ -1,14 +1,15 @@
 package backend.project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -40,4 +41,5 @@ public class Event {
 
     @OneToMany(mappedBy = "event",fetch = FetchType.EAGER)
     private List<Donation> donations;  // Relation with Donation
+
 }
