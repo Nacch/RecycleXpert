@@ -2,7 +2,7 @@ import { createRequire } from 'module';const require = createRequire(import.meta
 import {
   ScrollingModule,
   ViewportRuler
-} from "./chunk-4X5CJATB.js";
+} from "./chunk-TOTKVL76.js";
 import {
   DataSource,
   _DisposeViewRepeaterStrategy,
@@ -10,13 +10,13 @@ import {
   _VIEW_REPEATER_STRATEGY,
   _ViewRepeaterOperation,
   isDataSource
-} from "./chunk-VYXIXJ5Z.js";
+} from "./chunk-I7FZMJUU.js";
 import {
   Directionality,
   MatCommonModule,
   Platform,
   _isNumberValue
-} from "./chunk-AN4UHH47.js";
+} from "./chunk-4PTIQBCN.js";
 import {
   DOCUMENT
 } from "./chunk-Y243YYCR.js";
@@ -1666,9 +1666,8 @@ var CdkTable = class _CdkTable {
   /** Aria role to apply to the table's cells based on the table's own role. */
   _getCellRole() {
     if (this._cellRoleInternal === void 0) {
-      const role = this._elementRef.nativeElement.getAttribute("role");
-      const cellRole = role === "grid" || role === "treegrid" ? "gridcell" : "cell";
-      this._cellRoleInternal = this._isNativeHtmlTable && cellRole === "cell" ? null : cellRole;
+      const tableRole = this._elementRef.nativeElement.getAttribute("role");
+      return tableRole === "grid" || tableRole === "treegrid" ? "gridcell" : "cell";
     }
     return this._cellRoleInternal;
   }
