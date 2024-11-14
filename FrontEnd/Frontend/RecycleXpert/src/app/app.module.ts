@@ -17,8 +17,6 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { DatePipe } from '@angular/common';  // Agrega esta importación
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

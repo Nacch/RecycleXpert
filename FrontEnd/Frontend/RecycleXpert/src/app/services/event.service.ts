@@ -22,7 +22,10 @@ export class EventService {
   }
   //Para añadir
   addEvent(evento : Evento){
-    return this.http.post<Evento>(this.servidor+"/"+this.recurso, evento);
+    const payload = JSON.stringify(evento); // Convertir a JSON string
+    return this.http.post<Evento>(`${this.servidor}/${this.recurso}`, payload, {
+        headers: { 'Content-Type': 'application/json' }
+    }); 
   }
   //Para eliminar
   deleteEvent(id:number){
@@ -32,5 +35,4 @@ export class EventService {
   editEvent(evento: Evento){
     return this.http.put<Evento>(this.servidor+"/"+this.recurso+"/"+evento.id.toString(),evento);
   }
-
 }

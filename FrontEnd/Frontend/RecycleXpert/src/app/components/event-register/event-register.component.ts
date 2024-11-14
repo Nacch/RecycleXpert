@@ -92,14 +92,12 @@ export class EventRegisterComponent {
                     organizationId: dataEvent.organizationId,
                     eventTypeId: dataEvent.eventTypeId
                 });
-
                 // Obtener tipos de eventos (si usas un dropdown o lista)
-                this.eventTypeService.getEventTypes().subscribe({
-                    next: (dataEventTypes: EventType[]) => {
-                        this.eventType = dataEventTypes;
-                        // Aquí puedes establecer el `eventTypeId` en el formulario si es necesario
-                    }
-                });
+                this.eventTypeService.getEventType(dataEvent.eventTypeId).subscribe({
+                  next: (dataEventType: EventType) => {
+                      this.eventType = [dataEventType]; // asigna el dato como un array de un solo elemento si es necesario
+                  }
+              });
             }
         });
     } else {
@@ -118,37 +116,34 @@ export class EventRegisterComponent {
       this.snackBar.open("Por favor, complete todos los campos correctamente.", "Ok", { duration: 3000 });
       return;
     }
-
-    // Convierte la fecha al formato deseado (por ejemplo, 'yyyy-MM-dd')
+  
     const date = this.datePipe.transform(this.addFormEvent.get("date")?.value, 'yyyy-MM-dd');
-
-
+  
     const evento: Evento = {
-      id: 0, 
+      id: 0,
       eventName: this.addFormEvent.get("eventName")?.value,
       description: this.addFormEvent.get("description")?.value,
       date: date!,
       location: this.addFormEvent.get("location")?.value,
       capacity: this.addFormEvent.get('capacity')?.value,
       organizationId: this.addFormEvent.get('organizationId')?.value,
-      eventTypeId: this.addFormEvent.get('eventTypeId')?.value
+      eventTypeId: +this.addFormEvent.get('eventTypeId')?.value // aseguramos que sea un número
     };
-
-       // Convierte la fecha al formato deseado (por ejemplo, 'yyyy-MM-dd')
-
-    console.log("Evento a registrar:", evento);  // Verificar valores del registro
-
+  
+    console.log("Evento a registrar:", evento);
+  
     this.eventService.addEvent(evento).subscribe({
-        next: (data) => {
-            this.snackBar.open("Evento registrado correctamente", "Ok", { duration: 3000 });
-            this.router.navigate(['/volunteer-listar']);
-        },
-        error: (err) => {
-            this.snackBar.open("Error al registrar el evento", "Ok", { duration: 3000 });
-        }
+      next: (data) => {
+        this.snackBar.open("Evento registrado correctamente", "Ok", { duration: 3000 });
+        this.router.navigate(['/volunteer-listar']);
+      },
+      error: (err) => {
+        console.error("Detalles del error:", err);  // Muestra el error completo en consola
+        this.snackBar.open("Error al registrar el evento", "Ok", { duration: 3000 });
+      }
     });
-
   }
+  
 
   onCancel(): void {
     this.router.navigate(['/volunteer-listar']);
