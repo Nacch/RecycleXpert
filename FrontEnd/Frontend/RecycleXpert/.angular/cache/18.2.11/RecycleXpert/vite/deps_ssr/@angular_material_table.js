@@ -2,7 +2,7 @@ import { createRequire } from 'module';const require = createRequire(import.meta
 import {
   ScrollingModule,
   ViewportRuler
-} from "./chunk-4X5CJATB.js";
+} from "./chunk-TMRUZRW5.js";
 import {
   DataSource,
   _DisposeViewRepeaterStrategy,
@@ -10,16 +10,16 @@ import {
   _VIEW_REPEATER_STRATEGY,
   _ViewRepeaterOperation,
   isDataSource
-} from "./chunk-VYXIXJ5Z.js";
+} from "./chunk-HERS4KYH.js";
 import {
   Directionality,
   MatCommonModule,
   Platform,
   _isNumberValue
-} from "./chunk-AN4UHH47.js";
+} from "./chunk-AELHC7HI.js";
 import {
   DOCUMENT
-} from "./chunk-Y243YYCR.js";
+} from "./chunk-75XIEVMI.js";
 import {
   Attribute,
   ChangeDetectionStrategy,
@@ -48,7 +48,6 @@ import {
   afterNextRender,
   booleanAttribute,
   inject,
-  require_cjs,
   require_operators,
   setClassMetadata,
   ɵɵInheritDefinitionFeature,
@@ -84,7 +83,10 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate1,
   ɵɵviewQuery
-} from "./chunk-EPDCWPWL.js";
+} from "./chunk-4YH6MMO5.js";
+import {
+  require_cjs
+} from "./chunk-2H3L6IVL.js";
 import {
   __toESM
 } from "./chunk-NQ4HTGF6.js";
@@ -1666,9 +1668,8 @@ var CdkTable = class _CdkTable {
   /** Aria role to apply to the table's cells based on the table's own role. */
   _getCellRole() {
     if (this._cellRoleInternal === void 0) {
-      const role = this._elementRef.nativeElement.getAttribute("role");
-      const cellRole = role === "grid" || role === "treegrid" ? "gridcell" : "cell";
-      this._cellRoleInternal = this._isNativeHtmlTable && cellRole === "cell" ? null : cellRole;
+      const tableRole = this._elementRef.nativeElement.getAttribute("role");
+      return tableRole === "grid" || tableRole === "treegrid" ? "gridcell" : "cell";
     }
     return this._cellRoleInternal;
   }

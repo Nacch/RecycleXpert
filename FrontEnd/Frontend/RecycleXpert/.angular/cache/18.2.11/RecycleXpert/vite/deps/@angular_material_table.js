@@ -1,7 +1,7 @@
 import {
   ScrollingModule,
   ViewportRuler
-} from "./chunk-PRHQSODF.js";
+} from "./chunk-52ZAIHRC.js";
 import {
   DataSource,
   _DisposeViewRepeaterStrategy,
@@ -9,19 +9,18 @@ import {
   _VIEW_REPEATER_STRATEGY,
   _ViewRepeaterOperation,
   isDataSource
-} from "./chunk-GUUJMXD4.js";
+} from "./chunk-DLYKAWNY.js";
 import {
   Directionality,
   MatCommonModule,
   Platform,
   _isNumberValue
-} from "./chunk-2DEMOCA5.js";
+} from "./chunk-IHWV7TA2.js";
 import {
   DOCUMENT
-} from "./chunk-4WWB3DWC.js";
+} from "./chunk-EOS5446C.js";
 import {
   Attribute,
-  BehaviorSubject,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -41,21 +40,14 @@ import {
   Optional,
   Output,
   SkipSelf,
-  Subject,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation$1,
   afterNextRender,
   booleanAttribute,
-  combineLatest,
   inject,
-  isObservable,
-  map,
-  merge,
-  of,
   setClassMetadata,
-  takeUntil,
   ɵɵInheritDefinitionFeature,
   ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
@@ -89,7 +81,17 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate1,
   ɵɵviewQuery
-} from "./chunk-3OOIN7KY.js";
+} from "./chunk-YDAO526V.js";
+import {
+  BehaviorSubject,
+  Subject,
+  combineLatest,
+  isObservable,
+  map,
+  merge,
+  of,
+  takeUntil
+} from "./chunk-LZZO2QZE.js";
 
 // node_modules/@angular/cdk/fesm2022/table.mjs
 var _c0 = [[["caption"]], [["colgroup"], ["col"]], "*"];
@@ -1666,9 +1668,8 @@ var CdkTable = class _CdkTable {
   /** Aria role to apply to the table's cells based on the table's own role. */
   _getCellRole() {
     if (this._cellRoleInternal === void 0) {
-      const role = this._elementRef.nativeElement.getAttribute("role");
-      const cellRole = role === "grid" || role === "treegrid" ? "gridcell" : "cell";
-      this._cellRoleInternal = this._isNativeHtmlTable && cellRole === "cell" ? null : cellRole;
+      const tableRole = this._elementRef.nativeElement.getAttribute("role");
+      return tableRole === "grid" || tableRole === "treegrid" ? "gridcell" : "cell";
     }
     return this._cellRoleInternal;
   }

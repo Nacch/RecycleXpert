@@ -12,6 +12,11 @@ import { MenuComponent } from './components/menu/menu.component';
 import { RegisterVolunteerComponent } from './components/register-volunteer/register-volunteer.component';
 import { EventRegisterComponent } from './components/event-register/event-register.component';
 import { VolunteerListarComponent } from './components/volunteer-listar/volunteer-listar.component';
+import { EventTypeRegisterComponent } from './components/event-type-register/event-type-register.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { DatePipe } from '@angular/common';  // Agrega esta importación
+
 
 
 @NgModule({
@@ -20,7 +25,10 @@ import { VolunteerListarComponent } from './components/volunteer-listar/voluntee
     MenuComponent,
     RegisterVolunteerComponent,
     EventRegisterComponent,
-    VolunteerListarComponent
+    VolunteerListarComponent,
+    EventTypeRegisterComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +41,10 @@ import { VolunteerListarComponent } from './components/volunteer-listar/voluntee
     provideClientHydration(),
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
+    DatePipe, 
+  
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
