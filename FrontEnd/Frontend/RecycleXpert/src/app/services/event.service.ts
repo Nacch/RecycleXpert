@@ -11,7 +11,7 @@ export class EventService {
     servidor: string = "http://localhost:8080/api";
     recurso: string = "events";
   
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
      //Para mostar en Lista o Listar
   getEvents(){
     return this.http.get<Evento[]>(this.servidor+"/"+this.recurso);
@@ -20,17 +20,16 @@ export class EventService {
   getEvent(id: number){
     return this.http.get<Evento>(this.servidor+"/"+this.recurso+"/"+id.toString());
   }
-  //Para añadir
-  addEvent(evento : Evento){
-    const payload = JSON.stringify(evento); // Convertir a JSON string
-    return this.http.post<Evento>(`${this.servidor}/${this.recurso}`, payload, {
-        headers: { 'Content-Type': 'application/json' }
-    }); 
-  }
+
   //Para eliminar
   deleteEvent(id:number){
     return this.http.delete<Evento>(this.servidor+"/"+this.recurso+"/"+id.toString());
   }
+  //Para añadir o insertar
+  addEvento(evento : Evento){
+    return this.http.post<Evento>(this.servidor+"/"+this.recurso, evento);
+  }
+
   //Para el llamado del editar
   editEvent(evento: Evento){
     return this.http.put<Evento>(this.servidor+"/"+this.recurso+"/"+evento.id.toString(),evento);

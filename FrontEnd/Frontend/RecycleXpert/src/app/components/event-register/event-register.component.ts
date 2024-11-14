@@ -18,6 +18,7 @@ import { Organization } from '../../models/organization';
 export class EventRegisterComponent {
   addFormEvent! : FormGroup;
 
+  date!:String;
   eventType!: EventType[];
   organization! :Organization[];
   eventId:number=0;
@@ -84,25 +85,33 @@ export class EventRegisterComponent {
   }
 
   CrearFormulario(){
-    this.addFormEvent = this.fb.group({
-      id:[""],
-      eventName: ['', Validators.required],
-      description: ['', Validators.required],
-      date: ['', Validators.required],
-      location: ['', Validators.required],
-      capacity: [1, [Validators.required, Validators.min(1)]],
-      organizationId: [''],
-      eventTypeId: [''],
-    });
+    this.addFormEvent = this.fb.group(
+      {
+        id:[""],
+        eventName: ['', Validators.required],
+        description: ['', Validators.required],
+        date: ['', Validators.required],
+        location: ['', Validators.required],
+        capacity: [1, [Validators.required, Validators.min(1)]],
+        organizationId: [''],
+        eventTypeId: ['']
+      }
+    );
 
     this.eventId = parseInt(this.activatedRoute.snapshot.params["id"]);
 
-    if (this.eventId > 0 && this.eventId != undefined) {
+    if (this.eventId>0 && this.eventId != undefined) {
       // Cargar los datos para edición
       this.eventService.getEvent(this.eventId).subscribe({
-
         next: (dataEvent: Evento) => {
           // Asignar valores al formulario
+          this.addFormEvent.get("id")?.setValue(dataEvent.id);
+          this.addFormEvent.get("eventName")?.setValue(dataEvent.eventName);
+          this.addFormEvent.get("description")?.setValue(dataEvent.description);
+          this.addFormEvent.get("date")?.setValue(dataEvent.date+"T00:00:00");
+          this.addFormEvent.get("location")?.setValue(dataEvent.location);
+          this.addFormEvent.get("capacity")?.setValue(dataEvent.capacity);
+          /*
           this.addFormEvent.patchValue({
             eventName: dataEvent.eventName,
             description: dataEvent.description,
@@ -112,6 +121,7 @@ export class EventRegisterComponent {
             organizationId: dataEvent.organizationId,
             eventTypeId: dataEvent.eventTypeId
           });
+          */
             // Obtener tipos de eventos (si usas un dropdown o lista)
           this.eventTypeService.getEventType(dataEvent.eventTypeId).subscribe({
             next: (dataEventType: EventType) => {
@@ -150,7 +160,6 @@ export class EventRegisterComponent {
         })
     }
         */
-
   }
 
   RegistrarEvento(){
@@ -158,35 +167,47 @@ export class EventRegisterComponent {
       this.snackBar.open("Por favor, complete todos los campos correctamente.", "Ok", { duration: 3000 });
       return;
     }
-  
-    const date = this.datePipe.transform(this.addFormEvent.get("date")?.value, 'yyyy-MM-dd');
-  
+   
     const evento: Evento = {
-      id: 0,
+      id: this.eventId,
       eventName: this.addFormEvent.get("eventName")?.value,
       description: this.addFormEvent.get("description")?.value,
-      date: date!,
+      date: this.addFormEvent.get("date")?.value,
       location: this.addFormEvent.get("location")?.value,
       capacity: this.addFormEvent.get('capacity')?.value,
       organizationId: this.addFormEvent.get('organizationId')?.value,
-      eventTypeId: +this.addFormEvent.get('eventTypeId')?.value // aseguramos que sea un número
+      eventTypeId: this.addFormEvent.get('eventTypeId')?.value // aseguramos que sea un número
     };
   
     console.log("Evento a registrar:", evento);
+
+    if(this.eventId==0){
+      this.eventService.addEvento(evento).subscribe({
+        next: (data) => {
+          this.router.navigate(['/volunteer-listar']);
+          this.snackBar.open("Evento registrado correctamente", "Ok", { duration: 3000 });
+
+        },
+        error: (err) => {
+          console.error("Detalles del error:", err);  // Muestra el error completo en consola
+          this.snackBar.open("Error al registrar el evento", "Ok", { duration: 3000 });
+        }
+      })
+    }else{
+      this.eventService.editEvent(evento).subscribe({
+        next: (data) => {
+          this.router.navigate(['/volunteer-listar']);
+          this.snackBar.open("Evento Actualiza correctamente", "Ok", { duration: 3000 });
+        },
+        error: (err) => {
+          console.error("Detalles del error:", err);  // Muestra el error completo en consola
+          this.snackBar.open("Error al Actualizar el evento", "Ok", { duration: 3000 });
+        }
+      })
+    }
   
-    this.eventService.addEvent(evento).subscribe({
-      next: (data) => {
-        this.snackBar.open("Evento registrado correctamente", "Ok", { duration: 3000 });
-        this.router.navigate(['/volunteer-listar']);
-      },
-      error: (err) => {
-        console.error("Detalles del error:", err);  // Muestra el error completo en consola
-        this.snackBar.open("Error al registrar el evento", "Ok", { duration: 3000 });
-      }
-    });
   }
   
-
   onCancel(): void {
     this.router.navigate(['/volunteer-listar']);
   }
