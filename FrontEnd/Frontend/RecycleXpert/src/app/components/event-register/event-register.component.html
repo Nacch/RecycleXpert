@@ -40,10 +40,15 @@
     <mat-error *ngIf="addFormEvent.get('capacity')?.hasError('min')">Debe ser al menos 1 persona</mat-error>
   </mat-form-field>
   <br><br>
-  <!-- Organización (Opcional) -->
-  <mat-form-field appearance="fill">
+
+  <!-- Organización (Select) -->
+  <mat-form-field>
     <mat-label>Organización</mat-label>
-    <input matInput formControlName="organizationId">
+    <mat-select formControlName="organizationId">
+      <mat-option *ngFor="let element of organization" [value]="element.id">
+        {{ element.organizationName}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <!-- Organización (Select) -->

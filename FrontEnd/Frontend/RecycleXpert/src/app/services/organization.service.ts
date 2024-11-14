@@ -19,6 +19,4 @@ export class OrganizationService {
   getOrganization(id: number){
     return this.http.get<Organization>(this.servidor+"/"+this.recurso+"/"+id.toString());
   }
-
- 
 }

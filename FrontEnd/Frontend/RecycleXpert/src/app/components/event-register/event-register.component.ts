@@ -7,6 +7,8 @@ import { Evento } from '../../models/evento';
 import { EventType } from '../../models/eventType';
 import { EventTypeService } from '../../services/event-type.service';
 import { DatePipe } from '@angular/common';
+import { OrganizationService } from '../../services/organization.service';
+import { Organization } from '../../models/organization';
 
 @Component({
   selector: 'app-event-register',
@@ -17,23 +19,27 @@ export class EventRegisterComponent {
   addFormEvent! : FormGroup;
 
   eventType!: EventType[];
+  organization! :Organization[];
   eventId:number=0;
 
-
   constructor(
+    //services
     private eventService : EventService,
     private eventTypeService: EventTypeService,
+    private organizationService: OrganizationService,
+    //----------------------
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private router: Router,
     private activatedRoute:ActivatedRoute,
     private datePipe: DatePipe  // Inyecta DatePipe
-
   ){}
 
   ngOnInit(): void {
     this.CrearFormulario();
     this.cargarTiposDeEventos();
+    this.cargarOrganizaciones(); 
+
 
     this.eventId = parseInt(this.activatedRoute.snapshot.params['id'], 10);
     if (this.eventId) {
@@ -52,6 +58,7 @@ export class EventRegisterComponent {
       }
     });
   }
+  //Cargamos Eveentosss----------
   cargarTiposDeEventos(): void {
     this.eventTypeService.getEventTypes().subscribe({
       next:(data: EventType[]) => {
@@ -60,6 +67,18 @@ export class EventRegisterComponent {
       error: (err) => {
         console.error("Error al cargar tipos de eventos", err);
         this.snackBar.open("Error al cargar tipos de eventos", "Ok", { duration: 3000 });
+      }
+    });
+  }
+  //Cargamos Organizacionesssss-----
+  cargarOrganizaciones(): void {
+    this.organizationService.getOrganizations().subscribe({
+      next: (dataOrganizations: Organization[]) => {
+        this.organization = dataOrganizations;
+      },
+      error: (err) => {
+        console.error("Error al cargar organizaciones", err);
+        this.snackBar.open("Error al cargar organizaciones", "Ok", { duration: 3000 });
       }
     });
   }
@@ -73,41 +92,64 @@ export class EventRegisterComponent {
       location: ['', Validators.required],
       capacity: [1, [Validators.required, Validators.min(1)]],
       organizationId: [''],
-      eventTypeId: ['']
+      eventTypeId: [''],
     });
 
     this.eventId = parseInt(this.activatedRoute.snapshot.params["id"]);
 
     if (this.eventId > 0 && this.eventId != undefined) {
-        // Cargar los datos para edición
-        this.eventService.getEvent(this.eventId).subscribe({
-            next: (dataEvent: Evento) => { 
-                // Asignar valores al formulario
-                this.addFormEvent.patchValue({
-                    eventName: dataEvent.eventName,
-                    description: dataEvent.description,
-                    date: dataEvent.date,
-                    location: dataEvent.location,
-                    capacity: dataEvent.capacity,
-                    organizationId: dataEvent.organizationId,
-                    eventTypeId: dataEvent.eventTypeId
-                });
-                // Obtener tipos de eventos (si usas un dropdown o lista)
-                this.eventTypeService.getEventType(dataEvent.eventTypeId).subscribe({
-                  next: (dataEventType: EventType) => {
-                      this.eventType = [dataEventType]; // asigna el dato como un array de un solo elemento si es necesario
-                  }
-              });
+      // Cargar los datos para edición
+      this.eventService.getEvent(this.eventId).subscribe({
+
+        next: (dataEvent: Evento) => {
+          // Asignar valores al formulario
+          this.addFormEvent.patchValue({
+            eventName: dataEvent.eventName,
+            description: dataEvent.description,
+            date: dataEvent.date,
+            location: dataEvent.location,
+            capacity: dataEvent.capacity,
+            organizationId: dataEvent.organizationId,
+            eventTypeId: dataEvent.eventTypeId
+          });
+            // Obtener tipos de eventos (si usas un dropdown o lista)
+          this.eventTypeService.getEventType(dataEvent.eventTypeId).subscribe({
+            next: (dataEventType: EventType) => {
+              this.eventType = [dataEventType]; // asigna el dato como un array de un solo elemento si es necesario
             }
-        });
-    } else {
+          });
+          this.organizationService.getOrganization(dataEvent.organizationId).subscribe({
+            next: (dataOrganization: Organization) =>{
+              this.organization=[dataOrganization];
+            }
+          })
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+      })
+
+    } else{
+      //Cuando deseaños insertar
+      this.eventId = 0;
+    }
+    /*
+
+    else {
         // Si es un nuevo evento, podrías cargar la lista de tipos de eventos también aquí
         this.eventTypeService.getEventTypes().subscribe({
-            next: (dataEventTypes: EventType[]) => {
-                this.eventType = dataEventTypes;
-            }
+          next: (dataEventTypes: EventType[]) => {
+            this.eventType = dataEventTypes;
+          }
         });
+
+        this.organizationService.getOrganizations().subscribe({
+          next: (dataOrganizations : Organization[])=>{
+            this.organization=dataOrganizations;
+          } 
+        })
     }
+        */
 
   }
 
