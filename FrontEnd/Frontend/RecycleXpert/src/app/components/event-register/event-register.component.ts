@@ -184,7 +184,7 @@ export class EventRegisterComponent {
     if(this.eventId>0 && this.eventId!=undefined){
       this.eventService.editEvent(evento).subscribe({
         next: (data) => {
-          this.router.navigate(['/volunteer-listar']);
+          this.router.navigate(['/event-listar']);
           this.snackBar.open("Evento Actualiza correctamente", "Ok", { duration: 3000 });
         },
         error: (err) => {
@@ -195,7 +195,7 @@ export class EventRegisterComponent {
     }else{
       this.eventService.addEvento(evento).subscribe({
         next: (data) => {
-          this.router.navigate(['/volunteer-listar']);
+          this.router.navigate(['/home']);
           this.snackBar.open("Evento registrado correctamente", "Ok", { duration: 3000 });
 
         },
@@ -210,7 +210,7 @@ export class EventRegisterComponent {
   }
   
   onCancel(): void {
-    this.router.navigate(['/volunteer-listar']);
+    this.router.navigate(['/home']);
   }
 
 }

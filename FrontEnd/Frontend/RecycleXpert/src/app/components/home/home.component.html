@@ -1,86 +1,67 @@
-<h5>Opciones del Sistema</h5>
-<br>
+<h3 class="mat-headline-4 text-center">Opciones del ......</h3>
 
-<!-- Barra de Progreso ┬ PRUEBAAAAAAA -->
+<!-- Barra de Progreso -->
 <div class="progress-container">
-  <mat-card appearance="outlined" class="progress-card">
+  <mat-card class="progress-card">
     <mat-card-header>
       <mat-card-title>Progreso del Voluntario</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-progress-bar mode="determinate" [value]="calculateProgress(volunteerPoints)" color="accent"></mat-progress-bar>
-      <p class="progress-text">¡Estás a {{ calculateRemainingPoints(volunteerPoints) }} puntos de subir al siguiente nivel!</p>
+      <p class="progress-text">
+        ¡Estás a <strong>{{ calculateRemainingPoints(volunteerPoints) }}</strong> puntos de subir al siguiente nivel!
+      </p>
     </mat-card-content>
   </mat-card>
 </div>
-<br>
 
-<!-- Tarjeta para Voluntarios -->
-<mat-card appearance="outlined" class="example-card">
-  <mat-card-header>
-    <mat-card-title>Voluntarios</mat-card-title>
-    <mat-card-subtitle>Gestión de Voluntarios</mat-card-subtitle>
-  </mat-card-header>
+<!-- Sección de Tarjetas -->
+<div class="card-container">
+  <!-- Tarjeta para Voluntarios -->
+  <mat-card class="feature-card">
+    <mat-card-header>
+      <mat-card-title>Voluntarios</mat-card-title>
+      <mat-card-subtitle>Gestión de Voluntarios</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://example.com/volunteers-image.jpg" alt="Imagen de voluntarios" />
+    <mat-card-actions>
+      <button mat-button color="primary" routerLink="/volunteers">Ingresar</button>
+    </mat-card-actions>
+  </mat-card>
 
-  <mat-card-content>
-    <a routerLink="/volunteers">
-      <img mat-card-md-image src="https://example.com/volunteers-image.jpg" alt="Imagen de voluntarios">
-    </a>
-    <br>
-    Administra los voluntarios registrados en el sistema
-  </mat-card-content>
-</mat-card>
-<br>
-<br>
+  <!-- Tarjeta para Eventos -->
+  <mat-card class="feature-card">
+    <mat-card-header>
+      <mat-card-title>Eventos</mat-card-title>
+      <mat-card-subtitle>Gestión de Eventos</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://example.com/events-image.jpg" alt="Imagen de eventos" />
+    <mat-card-actions>
+      <button mat-button color="accent" routerLink="/events">Ingresar</button>
+    </mat-card-actions>
+  </mat-card>
 
-<!-- Tarjeta para Eventos -->
-<mat-card appearance="outlined" class="example-card">
-  <mat-card-header>
-    <mat-card-title>Eventos</mat-card-title>
-    <mat-card-subtitle>Gestión de Eventos</mat-card-subtitle>
-  </mat-card-header>
+  <!-- Tarjeta para Donaciones -->
+  <mat-card class="feature-card">
+    <mat-card-header>
+      <mat-card-title>Donaciones</mat-card-title>
+      <mat-card-subtitle>Gestión de Donaciones</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://example.com/donations-image.jpg" alt="Imagen de donaciones" />
+    <mat-card-actions>
+      <button mat-button color="warn" routerLink="/donations">Ingresar</button>
+    </mat-card-actions>
+  </mat-card>
 
-  <mat-card-content>
-    <a routerLink="/events">
-      <img mat-card-md-image src="https://example.com/events-image.jpg" alt="Imagen de eventos">
-    </a>
-    <br>
-    Administra los eventos organizados en el sistema
-  </mat-card-content>
-</mat-card>
-<br>
-<br>
-
-<!-- Tarjeta para Donaciones (opcional) -->
-<mat-card appearance="outlined" class="example-card">
-  <mat-card-header>
-    <mat-card-title>Donaciones</mat-card-title>
-    <mat-card-subtitle>Gestión de Donaciones</mat-card-subtitle>
-  </mat-card-header>
-
-  <mat-card-content>
-    <a routerLink="/donations">
-      <img mat-card-md-image src="https://example.com/donations-image.jpg" alt="Imagen de donaciones">
-    </a>
-    <br>
-    Administra las donaciones recibidas en el sistema
-  </mat-card-content>
-</mat-card>
-<br>
-<br>
-
-<!-- Tarjeta para Categorías (opcional) -->
-<mat-card appearance="outlined" class="example-card">
-  <mat-card-header>
-    <mat-card-title>Categorías</mat-card-title>
-    <mat-card-subtitle>Gestión de Categorías</mat-card-subtitle>
-  </mat-card-header>
-
-  <mat-card-content>
-    <a routerLink="/categories">
-      <img mat-card-md-image src="https://example.com/categories-image.jpg" alt="Imagen de categorías">
-    </a>
-    <br>
-    Administra las categorías disponibles en el sistema
-  </mat-card-content>
-</mat-card>
+  <!-- Tarjeta para Categorías -->
+  <mat-card class="feature-card">
+    <mat-card-header>
+      <mat-card-title>Categorías</mat-card-title>
+      <mat-card-subtitle>Gestión de Categorías</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://example.com/categories-image.jpg" alt="Imagen de categorías" />
+    <mat-card-actions>
+      <button mat-button color="primary" routerLink="/categories">Ingresar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
