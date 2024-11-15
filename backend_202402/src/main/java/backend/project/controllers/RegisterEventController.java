@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 public class RegisterEventController {
     @Autowired
     private RegisterEventServiceImpl registerEventService;
+
+
+    // Añadir un GET de mostrar
+
 
     // Registrar un voluntario en un evento
     @PostMapping("/register")

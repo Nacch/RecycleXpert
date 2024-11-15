@@ -1,5 +1,6 @@
 package backend.project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Organization {
     private String collaborationArea;
 
     @OneToMany(mappedBy = "organization",fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Event> events;  // Relation with Event
 
     @OneToMany(mappedBy = "organization",fetch = FetchType.EAGER)
