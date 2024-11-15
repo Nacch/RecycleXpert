@@ -15,5 +15,6 @@ public class EventDTO {
     private Date date;
     private String location;
     private int capacity;
-    private Long eventTypeId; // Sólo el ID, no toda la entidad
+    private Long eventTypeId;
+    private Long organizationId;
 }

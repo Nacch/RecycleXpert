@@ -6,6 +6,7 @@ import backend.project.entities.Organization;
 import java.util.List;
 
 public interface OrganizationService {
+
     public Organization createOrganization(Organization organization);
     public Organization updateOrganization(Long id, Organization updatedOrganization);
     public void deleteOrganization(Long id);

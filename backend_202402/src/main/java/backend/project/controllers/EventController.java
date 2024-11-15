@@ -33,14 +33,34 @@ public class EventController {
 
     // Crear un nuevo evento
     @PostMapping("/events")
+    public ResponseEntity<Event> createEvent(@RequestBody EventDTO event) {
+        Event newEvent = eventService.createEvent(event);
+        if(newEvent != null) {
+            return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
+
+ /*
+    @PostMapping("/events")
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
+        //Prueba
+        Event newEvent = eventService.createEvent(event);
+        if (newEvent != null) {
+            return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+
+         Esto es el original
         // Aquí se pasa el Event directamente al servicio
         Event newEvent = eventService.createEvent(event);
 
         // Retornamos el nuevo evento creado con un status 201
         return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
 
+
     }
+     */
 
     // Modificar un evento existente
     @PutMapping("/events/{id}")
@@ -55,4 +75,5 @@ public class EventController {
         eventService.deleteEvent(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }
