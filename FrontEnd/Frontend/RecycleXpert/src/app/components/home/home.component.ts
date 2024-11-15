@@ -10,6 +10,7 @@ export class HomeComponent {
     // Datos ficticios de ejemplo para el voluntario
     volunteerPoints: number = 120; // Puntos actuales del voluntario
     maxPoints: number = 200; // Puntos máximos necesarios para subir al siguiente nivel
+volunteerProgress: unknown;
   
     // Función para calcular el progreso en porcentaje
     calculateProgress(points: number): number {

@@ -181,7 +181,18 @@ export class EventRegisterComponent {
   
     console.log("Evento a registrar:", evento);
 
-    if(this.eventId==0){
+    if(this.eventId>0 && this.eventId!=undefined){
+      this.eventService.editEvent(evento).subscribe({
+        next: (data) => {
+          this.router.navigate(['/volunteer-listar']);
+          this.snackBar.open("Evento Actualiza correctamente", "Ok", { duration: 3000 });
+        },
+        error: (err) => {
+          console.error("Detalles del error:", err);  // Muestra el error completo en consola
+          this.snackBar.open("Error al Actualizar el evento", "Ok", { duration: 3000 });
+        }
+      })
+    }else{
       this.eventService.addEvento(evento).subscribe({
         next: (data) => {
           this.router.navigate(['/volunteer-listar']);
@@ -193,17 +204,7 @@ export class EventRegisterComponent {
           this.snackBar.open("Error al registrar el evento", "Ok", { duration: 3000 });
         }
       })
-    }else{
-      this.eventService.editEvent(evento).subscribe({
-        next: (data) => {
-          this.router.navigate(['/volunteer-listar']);
-          this.snackBar.open("Evento Actualiza correctamente", "Ok", { duration: 3000 });
-        },
-        error: (err) => {
-          console.error("Detalles del error:", err);  // Muestra el error completo en consola
-          this.snackBar.open("Error al Actualizar el evento", "Ok", { duration: 3000 });
-        }
-      })
+
     }
   
   }
