@@ -15,9 +15,8 @@ import { VolunteerListarComponent } from './components/volunteer-listar/voluntee
 import { EventTypeRegisterComponent } from './components/event-type-register/event-type-register.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { DatePipe } from '@angular/common';  // Agrega esta importación
-
-
+import { DatePipe } from '@angular/common';
+import { EventListarComponent } from './components/event-listar/event-listar.component';  // Agrega esta importación
 
 @NgModule({
   declarations: [
@@ -28,7 +27,8 @@ import { DatePipe } from '@angular/common';  // Agrega esta importación
     VolunteerListarComponent,
     EventTypeRegisterComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    EventListarComponent
   ],
   imports: [
     BrowserModule,

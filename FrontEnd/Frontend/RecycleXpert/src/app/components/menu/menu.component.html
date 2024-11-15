@@ -1,6 +1,13 @@
 <mat-toolbar class="custom-toolbar">
-  <mat-icon>recycling</mat-icon>
-  <span>Bienvenido a RecycleXpert</span>
+  <!-- Enlace en el ícono de reciclaje -->
+  <a routerLink="/home" style="text-decoration: none; color: inherit;">
+    <mat-icon>recycling</mat-icon>
+  </a>
+
+  <!-- Enlace en el título -->
+  <a routerLink="/home" style="text-decoration: none; color: inherit;">
+    <span>Bienvenido a RecycleXpert</span>
+  </a>
 
   <span class="spacer"></span>
 
@@ -15,6 +22,10 @@
   <button mat-button routerLink="/consultation">
     <mat-icon>search</mat-icon>
     Consultas
+  </button>
+  <button mat-button routerLink="/consultation">
+    <mat-icon>account_circle</mat-icon>
+    Perfil
   </button>
   <button mat-button routerLink="/logout">
     <mat-icon>logout</mat-icon>

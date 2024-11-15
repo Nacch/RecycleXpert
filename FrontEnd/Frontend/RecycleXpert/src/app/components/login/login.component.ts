@@ -13,6 +13,8 @@ import { UserService } from '../../services/user.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   ocultarPass: boolean = true;
+  isLoading = false;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,4 +59,10 @@ export class LoginComponent implements OnInit {
   cancelar() {
     this.router.navigate(['/']);
   }
+
+  redirectToRegister(){
+    
+  }
+
+  
 }

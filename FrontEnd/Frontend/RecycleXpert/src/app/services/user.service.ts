@@ -20,8 +20,6 @@ export class UserService {
     return this.http.get<User>(this.ruta_servidor+"/"+this.recurso+"/"+id.toString());
   }
 
-
-
   newUser(user: User){
     return this.http.post<User>(this.ruta_servidor+"/"+this.recurso + "/" + "register",user);
   }

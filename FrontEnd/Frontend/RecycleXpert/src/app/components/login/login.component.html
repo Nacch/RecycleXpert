@@ -1,4 +1,4 @@
-<h2 class="login-title">Bienvenido de nuevo!</h2>
+<h2 class="login-title">Bienvenido!</h2>
 
 <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
 
@@ -18,6 +18,15 @@
     </button>
     <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Este campo es obligatorio</mat-error>
   </mat-form-field>
+
+  <mat-card-footer>
+    <p class="login-footer">
+      ¿No tienes una cuenta?
+      <button mat-button color="accent" type="button" (click)="redirectToRegister()">
+        Regístrate aquí
+      </button>
+    </p>
+  </mat-card-footer>
 
   <!-- Acciones -->
   <div class="actions">
