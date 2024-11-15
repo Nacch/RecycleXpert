@@ -1,5 +1,20 @@
 <h5>Opciones del Sistema</h5>
 <br>
+
+<!-- Barra de Progreso ┬ PRUEBAAAAAAA -->
+<div class="progress-container">
+  <mat-card appearance="outlined" class="progress-card">
+    <mat-card-header>
+      <mat-card-title>Progreso del Voluntario</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-progress-bar mode="determinate" [value]="calculateProgress(volunteerPoints)" color="accent"></mat-progress-bar>
+      <p class="progress-text">¡Estás a {{ calculateRemainingPoints(volunteerPoints) }} puntos de subir al siguiente nivel!</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+<br>
+
 <!-- Tarjeta para Voluntarios -->
 <mat-card appearance="outlined" class="example-card">
   <mat-card-header>

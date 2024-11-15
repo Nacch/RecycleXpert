@@ -17,6 +17,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { MatProgressBarModule } from '@angular/material/progress-bar'; // Importa el módulo
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+
 
 
 @NgModule({
@@ -40,7 +44,11 @@ import { FormsModule } from '@angular/forms';
     MatPaginatorModule,
     MatInputModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    MatProgressBarModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    
 
   ],
   exports:[
@@ -61,7 +69,8 @@ import { FormsModule } from '@angular/forms';
     MatPaginatorModule,
     MatInputModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    MatProgressBarModule
   ]
 })
 export class MaterialModule { }
