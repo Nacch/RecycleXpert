@@ -7,6 +7,7 @@ import { UserService } from '../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterVolunteerComponent } from '../register-volunteer/register-volunteer.component';
 import { OrganizationSignupComponent } from '../sign-up/organization-signup/organization-signup.component';
+import { SelectSignupComponent } from '../sign-up/select-signup/select-signup.component';
 
 @Component({
   selector: 'app-login',
@@ -70,7 +71,7 @@ export class LoginComponent implements OnInit {
   }
 
   openRegisterDialog() {
-    this.dialog.open(OrganizationSignupComponent, {
+    this.dialog.open(SelectSignupComponent, {
       autoFocus: false, 
       width: '400px',
     });

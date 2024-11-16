@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { RegisterVolunteerComponent } from '../../register-volunteer/register-volunteer.component';
 import { Router } from '@angular/router';
+import { RegisterVolunteerComponent } from '../../register-volunteer/register-volunteer.component';
 
 @Component({
-  selector: 'app-organization-signup',
-  templateUrl: './organization-signup.component.html',
-  styleUrl: './organization-signup.component.css'
+  selector: 'app-select-signup',
+  templateUrl: './select-signup.component.html',
+  styleUrl: './select-signup.component.css'
 })
-export class OrganizationSignupComponent {
+export class SelectSignupComponent {
   step: 'choose' | 'volunteer' | 'organization' = 'choose'; // Estado del diálogo
   registerForm!: FormGroup;
   registerType: any;

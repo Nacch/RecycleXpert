@@ -19,6 +19,7 @@ import { DatePipe } from '@angular/common';
 import { EventListarComponent } from './components/event-listar/event-listar.component';
 import { VolunteerSignupComponent } from './components/sign-up/volunteer-signup/volunteer-signup.component';
 import { OrganizationSignupComponent } from './components/sign-up/organization-signup/organization-signup.component';
+import { SelectSignupComponent } from './components/sign-up/select-signup/select-signup.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { OrganizationSignupComponent } from './components/sign-up/organization-s
     LoginComponent,
     EventListarComponent,
     VolunteerSignupComponent,
-    OrganizationSignupComponent
+    OrganizationSignupComponent,
+    SelectSignupComponent
   ],
   imports: [
     BrowserModule,
