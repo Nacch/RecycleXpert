@@ -37,34 +37,14 @@
       <mat-error *ngIf="addForm.get('address')?.hasError('required')">Este campo es obligatorio</mat-error>
     </mat-form-field>
 
-    <!-- Puntos -->
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Puntos</mat-label>
-      <input matInput type="number" formControlName="points" required min="0" />
-      <mat-error *ngIf="addForm.get('points')?.hasError('required')">Este campo es obligatorio</mat-error>
-      <mat-error *ngIf="addForm.get('points')?.hasError('min')">Debe ser un valor positivo</mat-error>
-    </mat-form-field>
-
-    <!-- Categoría -->
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Categoría</mat-label>
-      <input matInput formControlName="category" required />
-      <mat-error *ngIf="addForm.get('category')?.hasError('required')">Este campo es obligatorio</mat-error>
-    </mat-form-field>
-
-    <!-- Nivel -->
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Nivel</mat-label>
-      <input matInput type="number" formControlName="level" required min="1" />
-      <mat-error *ngIf="addForm.get('level')?.hasError('required')">Este campo es obligatorio</mat-error>
-      <mat-error *ngIf="addForm.get('level')?.hasError('min')">Debe ser al menos 1</mat-error>
-    </mat-form-field>
-
     <!-- Botones de acción -->
     <div class="action-buttons">
       <button mat-raised-button color="primary" type="submit" [disabled]="addForm.invalid">Registrar</button>
-      <button mat-button mat-dialog-close>Cerrar</button>
+      <button mat-raised-button color="warn" (click)="onCancel()">
+        Cancelar
+      </button>
     </div>
+    
   </form>
 </mat-dialog-content>
 

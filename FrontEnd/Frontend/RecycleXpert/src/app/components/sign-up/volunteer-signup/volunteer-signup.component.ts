@@ -13,7 +13,7 @@ import { Volunteer } from '../../../models/volunteer';
   styleUrls: ['./volunteer-signup.component.css']
 })
 export class VolunteerSignupComponent {
-  addForm: FormGroup;
+  addForm!: FormGroup;
 
   constructor(
     private volunteerService: VolunteerService,
@@ -64,7 +64,7 @@ export class VolunteerSignupComponent {
         this.volunteerService.addVolunteer(volunteer).subscribe({
           next: (data) => {
             this.snackBar.open("Voluntario registrado correctamente", "Ok", { duration: 3000 });
-            this.router.navigate(['/login']); // Redirigir al login
+            this.router.navigate(['/login']); 
           },
           error: (err) => {
             this.snackBar.open("Error al registrar el voluntario", "Ok", { duration: 3000 });
@@ -75,5 +75,9 @@ export class VolunteerSignupComponent {
         this.snackBar.open("Error al registrar el usuario", "Ok", { duration: 3000 });
       }
     });
+  }
+
+  onCancel(): void {
+    this.router.navigate(['/login']);
   }
 }

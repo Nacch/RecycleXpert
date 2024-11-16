@@ -36,6 +36,7 @@ export class SelectSignupComponent {
 
   RegisterOrganization() {
     //this.router.navigate(['/register-volunteer']);
+    this.router.navigate(['/organization-signup']);
     this.dialogRef.close();
   }
 }

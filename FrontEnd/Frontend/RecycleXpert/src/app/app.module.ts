@@ -20,6 +20,7 @@ import { EventListarComponent } from './components/event-listar/event-listar.com
 import { VolunteerSignupComponent } from './components/sign-up/volunteer-signup/volunteer-signup.component';
 import { OrganizationSignupComponent } from './components/sign-up/organization-signup/organization-signup.component';
 import { SelectSignupComponent } from './components/sign-up/select-signup/select-signup.component';
+import { CabeceraComponent } from './components/cabecera/cabecera.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SelectSignupComponent } from './components/sign-up/select-signup/select
     EventListarComponent,
     VolunteerSignupComponent,
     OrganizationSignupComponent,
-    SelectSignupComponent
+    SelectSignupComponent,
+    CabeceraComponent
   ],
   imports: [
     BrowserModule,

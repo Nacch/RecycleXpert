@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
   login() {
     if (this.loginForm.invalid) {
       return;
@@ -49,7 +48,7 @@ export class LoginComponent implements OnInit {
       id: 0,
       userName: this.loginForm.get('userName')?.value,
       password: this.loginForm.get('password')?.value,
-      authorities: ''
+      authorities: ""
     };
 
     this.userService.login(user).subscribe({
@@ -63,7 +62,7 @@ export class LoginComponent implements OnInit {
   }
 
   cancelar() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   redirectToRegister(){

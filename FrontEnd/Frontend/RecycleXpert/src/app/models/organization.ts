@@ -5,5 +5,5 @@ export interface Organization{
     orgType: string;             // Tipo de organización (por ejemplo, NGO, Non-Profit)
     contactInfo: string;         // Información de contacto (email, teléfono, etc.)
     collaborationArea: string;
-
+    
 }
