@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterVolunteerComponent } from '../register-volunteer/register-volunteer.component';
+import { OrganizationSignupComponent } from '../sign-up/organization-signup/organization-signup.component';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +23,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private snack: MatSnackBar,
-    private userService: UserService
+    private userService: UserService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +37,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]]
     });
   }
+
 
   login() {
     if (this.loginForm.invalid) {
@@ -61,8 +66,13 @@ export class LoginComponent implements OnInit {
   }
 
   redirectToRegister(){
-    
+    this.router.navigate(['/register-volunteer']);
   }
 
-  
+  openRegisterDialog() {
+    this.dialog.open(OrganizationSignupComponent, {
+      autoFocus: false, 
+      width: '400px',
+    });
+  }
 }

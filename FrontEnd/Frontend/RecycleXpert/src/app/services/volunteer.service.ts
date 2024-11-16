@@ -28,9 +28,15 @@ export class VolunteerService {
   deleteVolunteer(id:number){
     return this.http.delete<Volunteer>(this.servidor+"/"+this.recurso+"/"+id.toString());
   }
+
   //Para el llamado del editar
   editVolunteer(volunteer: Volunteer){
     return this.http.put<Volunteer>(this.servidor+"/"+this.recurso+"/"+volunteer.id.toString(),volunteer);
   }
+
+  /*
+  
+
+  */
 
 }

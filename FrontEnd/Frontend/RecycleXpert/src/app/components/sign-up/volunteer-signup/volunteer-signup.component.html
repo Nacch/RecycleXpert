@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Registro de Voluntario</h2>
+<mat-dialog-content>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Teléfono</mat-label>
+      <input matInput type="tel" formControlName="phone" />
+    </mat-form-field>
+
+    <!-- Agrega más campos aquí -->
+    <button mat-raised-button color="primary" type="submit">Registrar</button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

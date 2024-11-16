@@ -1,12 +1,11 @@
-<h6>Registro de Voluntario</h6>
+<h2 class="title">Registro de Voluntario</h2>
 
-<button mat-button routerLink="/volunteer-listar">
-  <mat-icon>event_note</mat-icon> <!-- Opción representativa para listar eventos -->
-  Lista de Voluntarios
+<!-- Botón para ir a la lista de voluntarios -->
+<button mat-button routerLink="/volunteer-listar" class="btn-list">
+  <mat-icon>event_note</mat-icon> Lista de Voluntarios
 </button>
 
-<form [formGroup]="addForm">
-
+<form [formGroup]="addForm" class="volunteer-form">
   <!-- Nombre del Voluntario -->
   <mat-form-field appearance="fill">
     <mat-label>Nombre del Voluntario</mat-label>
@@ -52,10 +51,13 @@
     <mat-error *ngIf="addForm.get('level')?.hasError('min')">Debe ser al menos 1</mat-error>
   </mat-form-field>
 
-  <!-- Botones de Acción -->
+  <!-- Botones de acción -->
   <div class="action-buttons">
-    <button mat-raised-button color="primary" (click)="registrarVoluntario()" [disabled]="addForm.invalid">Guardar</button>
-    <button mat-raised-button color="warn" (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="registrarVoluntario()" [disabled]="addForm.invalid">
+      Guardar
+    </button>
+    <button mat-raised-button color="warn" (click)="onCancel()">
+      Cancelar
+    </button>
   </div>
 </form>
-

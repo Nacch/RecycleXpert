@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VolunteerService } from '../../services/volunteer.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register-volunteer',
@@ -17,7 +18,8 @@ export class RegisterVolunteerComponent {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private router: Router,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {

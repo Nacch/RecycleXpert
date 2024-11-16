@@ -49,8 +49,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatCardModule,
     MatProgressSpinnerModule,
     
-    
-    
 
   ],
   exports:[
@@ -72,7 +70,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatInputModule,
     MatNativeDateModule,
     FormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatProgressSpinnerModule
+
   ]
 })
 export class MaterialModule { }
