@@ -15,6 +15,8 @@ import { User } from '../../../models/user';
 })
 export class OrganizationSignupComponent {
   addForm!: FormGroup;
+  ocultarPass: boolean = true;
+
 
   constructor(
     private organizationService: OrganizationService,
@@ -45,8 +47,13 @@ export class OrganizationSignupComponent {
   }
 
   registrarOrganzation(): void {
+    /*
     if (this.addForm.invalid) {
       this.snackBar.open("Por favor, complete todos los campos correctamente.", "Ok", { duration: 3000 });
+      return;
+    }
+         */
+    if (this.addForm.invalid) {
       return;
     }
 

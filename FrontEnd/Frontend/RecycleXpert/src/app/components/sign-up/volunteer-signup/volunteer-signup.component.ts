@@ -14,6 +14,8 @@ import { Volunteer } from '../../../models/volunteer';
 })
 export class VolunteerSignupComponent {
   addForm!: FormGroup;
+  ocultarPass: boolean = true;
+
 
   constructor(
     private volunteerService: VolunteerService,
@@ -35,8 +37,14 @@ export class VolunteerSignupComponent {
   }
 
   registrarVoluntario(): void {
+
+    /*
     if (this.addForm.invalid) {
       this.snackBar.open("Por favor, complete todos los campos correctamente.", "Ok", { duration: 3000 });
+      return;
+    }
+         */
+    if (this.addForm.invalid) {
       return;
     }
 

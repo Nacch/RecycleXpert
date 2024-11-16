@@ -8,12 +8,15 @@
       <mat-error *ngIf="addForm.get('userName')?.hasError('required')">Este campo es obligatorio</mat-error>
     </mat-form-field>
 
-    <!-- Contraseña -->
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Contraseña</mat-label>
-      <input matInput type="password" formControlName="password" required />
-      <mat-error *ngIf="addForm.get('password')?.hasError('required')">Este campo es obligatorio</mat-error>
-    </mat-form-field>
+  <!-- Campo para la contraseña -->
+  <mat-form-field class="full-width">
+    <mat-label>Contraseña</mat-label>
+    <input matInput formControlName="password" [type]="ocultarPass ? 'password' : 'text'" placeholder="Ingrese su contraseña">
+    <button mat-icon-button matSuffix (click)="ocultarPass = !ocultarPass" aria-label="Mostrar/ocultar contraseña">
+      <mat-icon>{{ ocultarPass ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+    <mat-error *ngIf="addForm.get('password')?.hasError('required')">Este campo es obligatorio</mat-error>
+  </mat-form-field>
 
     <!-- Nombre del Voluntario -->
     <mat-form-field appearance="fill" class="full-width">
