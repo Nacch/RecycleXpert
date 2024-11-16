@@ -25,7 +25,7 @@ export class SelectSignupComponent {
 
   RegisterVolunteer():void {
       //console.log(this.registerForm.value); // Aquí puedes enviar los datos al backend
-      this.router.navigate(['/register-volunteer']);
+      this.router.navigate(['/volunteer-signup']);
       this.dialogRef.close();
   }
 

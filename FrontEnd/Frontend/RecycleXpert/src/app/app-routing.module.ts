@@ -7,6 +7,7 @@ import { VolunteerListarComponent } from './components/volunteer-listar/voluntee
 import { LoginComponent } from './components/login/login.component';
 import { EventListarComponent } from './components/event-listar/event-listar.component';
 import { HomeComponent } from './components/home/home.component';
+import { VolunteerSignupComponent } from './components/sign-up/volunteer-signup/volunteer-signup.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'event-register', component: EventRegisterComponent},
   {path: 'volunteer-listar', component: VolunteerListarComponent},
   { path:"login", component: LoginComponent},
+  { path:"volunteer-signup", component: VolunteerSignupComponent},
 
 ];
 
