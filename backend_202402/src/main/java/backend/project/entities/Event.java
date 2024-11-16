@@ -1,6 +1,5 @@
 package backend.project.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,4 +41,15 @@ public class Event {
     @OneToMany(mappedBy = "event",fetch = FetchType.EAGER)
     private List<Donation> donations;  // Relation with Donation
 
+    public Event(Long id, String eventName, String description, String location, int capacity, Date date) {
+        this.id = id;
+        this.eventName = eventName;
+        this.description = description;
+        this.location = location;
+        this.capacity = capacity;
+        this.date = date;
+        this.eventType = eventType; // Siempre colocar
+        this.organization = organization; // Siempre colocar
+    }
 }
+

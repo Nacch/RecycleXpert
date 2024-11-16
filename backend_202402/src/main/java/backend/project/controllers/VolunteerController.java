@@ -1,6 +1,7 @@
 package backend.project.controllers;
 
 import backend.project.dtos.VolunteerDTO;
+import backend.project.dtos.VolunteerProgressDTO;
 import backend.project.entities.Event;
 import backend.project.entities.Volunteer;
 import backend.project.exceptions.KeyRepeatedDataException;
@@ -77,4 +78,28 @@ public class VolunteerController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/{volunteerId}/progress")
+    public ResponseEntity<VolunteerProgressDTO> getVolunteerProgress(@PathVariable Long volunteerId) {
+        Volunteer volunteer = volunteerService.findById(volunteerId); // Cambia getVolunteerById por findById
+
+        int currentPoints = volunteer.getPoints();
+        int level = volunteer.getLevel();
+        int pointsToNextLevel = calculatePointsToNextLevel(level);
+        double progressPercentage = (double) currentPoints / pointsToNextLevel * 100;
+        VolunteerProgressDTO progressDTO = new VolunteerProgressDTO(currentPoints, pointsToNextLevel, level, progressPercentage);
+
+        return ResponseEntity.ok(progressDTO);
+    }
+
+    // Método para calcular los puntos necesarios para el siguiente nivel
+    private int calculatePointsToNextLevel(int level) {
+        switch (level) {
+            case 1: return 100;
+            case 2: return 250;
+            case 3: return 500;
+            case 4: return 1000;
+            default: return Integer.MAX_VALUE; // Para el nivel 5 o superior
+        }
+    }
+
 }
