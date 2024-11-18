@@ -7,6 +7,7 @@ import { OrganizationService } from '../../../services/organization.service';
 import { UserService } from '../../../services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../../../models/user';
+import { Organization } from '../../../models/organization';
 
 @Component({
   selector: 'app-organization-signup',
@@ -63,18 +64,54 @@ export class OrganizationSignupComponent {
       password: this.addForm.get('password')?.value,
       authorities: "ORGANIZACION"
 
-
-
     };
+
+    /*
+    id: number;                  // ID único de la organización
+    organizationName: string;    // Nombre de la organización
+    orgType: string;             // Tipo de organización (por ejemplo, NGO, Non-Profit)
+    contactInfo: string;         // Información de contacto (email, teléfono, etc.)
+    collaborationArea: string;
+    */
+
+    this.userService.newUser(user).subscribe({
+      next: (data) => {
+        const userId = data.id;
+
+        const organization: Organization = { 
+          id: 0,
+          organizationName:this.addForm.get("volunteerName")?.value,
+          orgType:this.addForm.get("orgType")?.value,
+          contactInfo:this.addForm.get("contactInfo")?.value,
+          collaborationArea:this.addForm.get("collaborationArea")?.value,
+
+        };
+
+        this.organizationService.addOrganization(organization).subscribe({
+          next: (data) => {
+            this.snackBar.open("Voluntario registrado correctamente", "Ok", { duration: 3000 });
+            this.router.navigate(['/login']); 
+          },
+          error: (err) => {
+            this.snackBar.open("Error al registrar el voluntario", "Ok", { duration: 3000 });
+          }
+        });
+      },
+      error: (err) => {
+        this.snackBar.open("Error al registrar el usuario", "Ok", { duration: 3000 });
+      }
+    });
+
+    
+
+
+
 
 
 
 
 
   }
-
-
-
 
   RegisterVolunteer():void {
       //console.log(this.registerForm.value); // Aquí puedes enviar los datos al backend

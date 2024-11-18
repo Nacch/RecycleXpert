@@ -19,4 +19,21 @@ export class OrganizationService {
   getOrganization(id: number){
     return this.http.get<Organization>(this.servidor+"/"+this.recurso+"/"+id.toString());
   }
+
+  //Para eliminar
+  deleteOrganization(id:number){
+    return this.http.delete<Organization>(this.servidor+"/"+this.recurso+"/"+id.toString());
+  }
+
+  //Crear o insertar una nueva organización
+  addOrganization(organization : Organization){
+    return this.http.post<Organization>(this.servidor+"/"+this.recurso, organization);
+  }
+
+  //Para el llamado del editar
+  editEvent(organization : Organization){
+    return this.http.put<Organization>(this.servidor+"/"+this.recurso+"/"+organization.id.toString(),organization);
+  }
+
+
 }
