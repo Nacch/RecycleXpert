@@ -1,0 +1,59 @@
+aasdasdasdasdasdasdasdasd
+asd
+asd
+asd
+asd
+asd
+asd
+asd
+as
+das
+das
+d
+ad
+a
+as
+da
+import os
+import subprocess
+
+# Configura tus variables
+repo_url = 'https://github.com/tu_usuario/tu_repositorio.git'  # Cambia con tu URL de repo
+repo_dir = '/ruta/a/tu/repositorio'  # Cambia al directorio donde quieres trabajar
+file_to_add = 'archivo_a_subir.txt'  # Archivo que quieres subir
+file_to_delete = 'archivo_a_borrar.txt'  # Archivo que quieres borrar
+
+# Paso 1: Clonar el repositorio (si no está clonado ya)
+if not os.path.exists(repo_dir):
+    subprocess.run(['git', 'clone', repo_url, repo_dir])
+
+# Paso 2: Navegar al directorio del repositorio
+os.chdir(repo_dir)
+
+# Paso 3: Crear o modificar archivos
+with open(file_to_add, 'w') as f:
+    f.write("Este es un archivo de prueba para subir a GitHub.")
+
+# Paso 4: Añadir el archivo al control de versiones
+subprocess.run(['git', 'add', file_to_add])
+
+# Paso 5: Hacer commit
+subprocess.run(['git', 'commit', '-m', 'Añadir archivo de prueba'])
+
+# Paso 6: Hacer push de los cambios al repositorio
+subprocess.run(['git', 'push'])
+
+# Paso 7: Eliminar un archivo (para demostrar la eliminación)
+if os.path.exists(file_to_delete):
+    os.remove(file_to_delete)
+
+# Paso 8: Añadir el archivo eliminado al control de versiones
+subprocess.run(['git', 'add', file_to_delete])
+
+# Paso 9: Hacer commit del borrado
+subprocess.run(['git', 'commit', '-m', 'Eliminar archivo de prueba'])
+
+# Paso 10: Hacer push de los cambios al repositorio
+subprocess.run(['git', 'push'])
+
+print("Archivo añadido y luego borrado exitosamente. Contribuciones contadas.")
