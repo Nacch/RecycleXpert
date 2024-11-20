@@ -13,6 +13,7 @@ import { OrganizationSignupComponent } from './components/sign-up/organization-s
 
 const routes: Routes = [
 
+  {path: '', component: LoginComponent},
   {path: 'menu', component: MenuComponent},
   {path: 'home', component: HomeComponent},
   {path: 'register-volunteer', component: RegisterVolunteerComponent},

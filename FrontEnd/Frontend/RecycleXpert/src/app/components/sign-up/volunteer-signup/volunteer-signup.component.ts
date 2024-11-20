@@ -30,9 +30,6 @@ export class VolunteerSignupComponent {
       volunteerName: ['', Validators.required],    // Para Volunteer
       email: ['', [Validators.required, Validators.email]],   // Para Volunteer
       address: ['', Validators.required],          // Para Volunteer
-      points: [0, [Validators.required, Validators.min(0)]],  // Para Volunteer
-      category: ['', Validators.required],         // Para Volunteer
-      level: [1, [Validators.required, Validators.min(1)]]     // Para Volunteer
     });
   }
 

@@ -89,11 +89,11 @@ export class OrganizationSignupComponent {
 
         this.organizationService.addOrganization(organization).subscribe({
           next: (data) => {
-            this.snackBar.open("Voluntario registrado correctamente", "Ok", { duration: 3000 });
+            this.snackBar.open("Organización registrada correctamente", "Ok", { duration: 3000 });
             this.router.navigate(['/login']); 
           },
           error: (err) => {
-            this.snackBar.open("Error al registrar el voluntario", "Ok", { duration: 3000 });
+            this.snackBar.open("Error al registrar la Organización", "Ok", { duration: 3000 });
           }
         });
       },

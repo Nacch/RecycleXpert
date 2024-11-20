@@ -13,12 +13,12 @@ export class CabeceraComponent {
 
   logout(){
     this.userService.logout()
-    this.router.navigate(["/"]);
+    this.router.navigate(["/login"]);
   }
 
   usuarioLogeado() {
     return this.userService.hayUsuarioLogeado();
   }
 
-  
+
 }
