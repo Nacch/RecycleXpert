@@ -41,7 +41,6 @@ export class EventRegisterComponent {
     this.cargarTiposDeEventos();
     this.cargarOrganizaciones(); 
 
-
     this.eventId = parseInt(this.activatedRoute.snapshot.params['id'], 10);
     if (this.eventId) {
       this.cargarEventoParaEdicion(this.eventId);

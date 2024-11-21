@@ -9,12 +9,29 @@ import { Token } from '../models/token';
 })
 export class UserService {
 
- 
+  //Prueba
+  private currentUserRole: string | null = null;
+  //
   ruta_servidor: string = "http://localhost:8080/api";
   recurso:string = "users";
 
+
   constructor(private http:HttpClient) { }
 
+  //Prueba
+  setRole(authorities: string): void {
+    this.currentUserRole = authorities;
+  }
+
+  isVolunteer(): boolean {
+    return this.currentUserRole === 'VOLUNTARIO';
+  }
+
+  isOrganization(): boolean {
+    return this.currentUserRole === 'ORGANIZACION';
+  }
+
+  //
 
   getUser(id: number){
     return this.http.get<User>(this.ruta_servidor+"/"+this.recurso+"/"+id.toString());
@@ -72,5 +89,14 @@ export class UserService {
     return null;
   }
 
+  getNombreUsuarioLogeado(): string {
+    const userId = this.getUserIdActual();
+    if (userId) {
+      this.getUser(Number(userId)).subscribe((user) => {
+        return user.userName; 
+      });
+    }
+    return '';
+  }
 
 }

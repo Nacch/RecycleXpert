@@ -34,16 +34,10 @@ export class VolunteerSignupComponent {
   }
 
   registrarVoluntario(): void {
-
-    /*
-    if (this.addForm.invalid) {
-      this.snackBar.open("Por favor, complete todos los campos correctamente.", "Ok", { duration: 3000 });
-      return;
-    }
-         */
+    
     if (this.addForm.invalid) {
       return;
-    }
+    } 
 
     const user: User = {
       id: 0,

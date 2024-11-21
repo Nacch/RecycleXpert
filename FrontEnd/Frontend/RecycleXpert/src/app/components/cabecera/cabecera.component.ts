@@ -19,6 +19,6 @@ export class CabeceraComponent {
   usuarioLogeado() {
     return this.userService.hayUsuarioLogeado();
   }
-
+  
 
 }

@@ -13,6 +13,7 @@ import { Organization } from '../../../models/organization';
   selector: 'app-organization-signup',
   templateUrl: './organization-signup.component.html',
   styleUrl: './organization-signup.component.css'
+  
 })
 export class OrganizationSignupComponent {
   addForm!: FormGroup;
@@ -80,7 +81,7 @@ export class OrganizationSignupComponent {
 
         const organization: Organization = { 
           id: 0,
-          organizationName:this.addForm.get("volunteerName")?.value,
+          organizationName:this.addForm.get("organizationName")?.value,
           orgType:this.addForm.get("orgType")?.value,
           contactInfo:this.addForm.get("contactInfo")?.value,
           collaborationArea:this.addForm.get("collaborationArea")?.value,
@@ -101,16 +102,6 @@ export class OrganizationSignupComponent {
         this.snackBar.open("Error al registrar el usuario", "Ok", { duration: 3000 });
       }
     });
-
-    
-
-
-
-
-
-
-
-
   }
 
   RegisterVolunteer():void {
