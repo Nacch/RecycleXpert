@@ -18,7 +18,8 @@ export class EventRegistervolunteerComponent {
   cant_Event: number = 0; 
   eventsList = new MatTableDataSource<Evento>(); 
   selectedEvent: number | null = null; 
-  displayedColumns: string[] = ['eventName', 'date', 'description', 'location', 'select']; // Columnas de la tabla
+  cant_Event: number = 0;
+  displayedColumns: string[] = ['eventName', 'date', 'description', 'location', 'select', 'actions']; // Columnas actualizadas
 
   constructor(
     private eventService: EventService,
@@ -30,6 +31,7 @@ export class EventRegistervolunteerComponent {
 
   ngOnInit(): void {
     this.loadEvents(); 
+    this.loadEvents();
   }
 
   loadEvents() {
@@ -52,7 +54,7 @@ export class EventRegistervolunteerComponent {
     }
 
     const volunteerId = this.userService.getUserIdActual();
-    
+
     if (volunteerId === null) {
       this.snack.open('Error: No se pudo obtener el ID del voluntario. Por favor, inicia sesión.', 'OK', { duration: 2000 });
       return;
@@ -88,6 +90,35 @@ export class EventRegistervolunteerComponent {
     }
   }
 
+  // Desuscribir al voluntario de un evento
+  unsubscribeFromEvent(eventId: number) {
+    const volunteerId = this.userService.getUserIdActual(); // Obtener el ID del voluntario
+
+    if (volunteerId === null) {
+      this.snack.open('Error: No se pudo obtener el ID del voluntario. Por favor, inicia sesión.', 'OK', { duration: 2000 });
+      return;
+    }
+
+    // Llamada al servicio para desuscribir al voluntario
+    this.eventvolunteerService.unsubscribeVolunteerFromEvent(volunteerId, eventId);subscribe({
+      next: () => {
+        this.snack.open('Te has desuscrito del evento exitosamente', 'OK', { duration: 2000 });
+        // Actualiza la lista de eventos seleccionados
+        this.selectedEvents = this.selectedEvents.filter(id => id !== eventId);
+        // Refresca la lista de eventos
+        this.loadEvents();
+      },
+      error: () => {
+        this.snack.open('Error al desuscribirte del evento', 'OK', { duration: 2000 });
+      }
+    });
+  }
+
+  // Verificar si el voluntario está suscrito a un evento
+  isSubscribed(eventId: number): boolean {
+    return this.selectedEvents.includes(eventId);
+  }
+
   // Cancelar y regresar
   cancel() {
     this.router.navigate(['/home']);
@@ -98,3 +129,7 @@ export class EventRegistervolunteerComponent {
     this.selectedEvent = eventId;
   }
 }
+function subscribe(arg0: { next: () => void; error: () => void; }) {
+  throw new Error('Function not implemented.');
+}
+
