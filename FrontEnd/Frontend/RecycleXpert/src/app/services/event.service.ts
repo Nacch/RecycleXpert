@@ -7,31 +7,38 @@ import { Evento } from '../models/evento';
 })
 export class EventService {
 
-    // Ruta a donde se conectará
-    servidor: string = "http://localhost:8080/api";
-    recurso: string = "events";
-  
+  // Ruta a donde se conectará
+  servidor: string = "http://localhost:8080/api";
+  recurso: string = "events";
+
   constructor(private http: HttpClient) { }
-     //Para mostar en Lista o Listar
-  getEvents(){
-    return this.http.get<Evento[]>(this.servidor+"/"+this.recurso);
-  }
-  // Para buscar en el registrar y pueda verificar el editar
-  getEvent(id: number){
-    return this.http.get<Evento>(this.servidor+"/"+this.recurso+"/"+id.toString());
+
+  // Para listar eventos, con soporte para filtrar por usuario
+  getEvents(userId?: number) {
+    let url = this.servidor + "/" + this.recurso;
+    if (userId) {
+      url += `?userId=${userId}`; // Agregar el filtro como query param
+    }
+    return this.http.get<Evento[]>(url);
   }
 
-  //Para eliminar
-  deleteEvent(id:number){
-    return this.http.delete<Evento>(this.servidor+"/"+this.recurso+"/"+id.toString());
-  }
-  //Para añadir o insertar
-  addEvento(evento : Evento){
-    return this.http.post<Evento>(this.servidor+"/"+this.recurso, evento);
+  // Para buscar un evento específico por ID
+  getEvent(id: number) {
+    return this.http.get<Evento>(this.servidor + "/" + this.recurso + "/" + id.toString());
   }
 
-  //Para el llamado del editar
-  editEvent(evento: Evento){
-    return this.http.put<Evento>(this.servidor+"/"+this.recurso+"/"+evento.id.toString(),evento);
+  // Para eliminar un evento
+  deleteEvent(id: number) {
+    return this.http.delete<Evento>(this.servidor + "/" + this.recurso + "/" + id.toString());
+  }
+
+  // Para añadir o insertar un nuevo evento
+  addEvento(evento: Evento) {
+    return this.http.post<Evento>(this.servidor + "/" + this.recurso, evento);
+  }
+
+  // Para editar un evento existente
+  editEvent(evento: Evento) {
+    return this.http.put<Evento>(this.servidor + "/" + this.recurso + "/" + evento.id.toString(), evento);
   }
 }
