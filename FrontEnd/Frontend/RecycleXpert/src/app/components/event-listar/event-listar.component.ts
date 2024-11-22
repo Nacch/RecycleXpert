@@ -10,6 +10,9 @@ import { EventService } from '../../services/event.service';
   styleUrls: ['./event-listar.component.css']
 })
 export class EventListarComponent implements OnInit, AfterViewInit {
+confirmarEliminar(arg0: any) {
+throw new Error('Method not implemented.');
+}
   cant_Event: number = 0;
   dsEvent = new MatTableDataSource<Evento>();
   displayedColumns: string[] = ['id', 'eventName', 'description', 'date', 'location', 'capacity', 'actions'];
