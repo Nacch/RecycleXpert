@@ -1,8 +1,8 @@
 import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { Evento } from '../../models/evento'; // Ajusta la ruta según tu estructura
-import { EventService } from '../../services/event.service'; // Servicio de eventos
+import { Evento } from '../../models/evento'; 
+import { EventService } from '../../services/event.service'; 
 
 @Component({
   selector: 'app-event-listar',
@@ -25,31 +25,39 @@ export class EventListarComponent implements OnInit, AfterViewInit {
     this.dsEvent.paginator = this.paginator;
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dsEvent.filter = filterValue.trim().toLowerCase();
   }
 
-  loadEvents() {
-    this.eventService.getEvents().subscribe({
+  loadEvents(): void {
+    const userId = this.getLoggedUserId(); 
+
+    this.eventService.getEvents(userId).subscribe({
       next: (data: Evento[]) => {
         this.dsEvent.data = data;
         this.cant_Event = data.length;
       },
       error: (err) => {
-        console.log(err);
+        console.error('Error al cargar eventos:', err);
       }
     });
   }
 
-  borrarEvento(id: number) {
+  borrarEvento(id: number): void {
     this.eventService.deleteEvent(id).subscribe({
       next: () => {
-        this.loadEvents(); // Recargar la lista después de eliminar
+        this.loadEvents(); 
       },
       error: (err) => {
-        console.log(err);
+        console.error('Error al eliminar evento:', err);
       }
     });
+  }
+
+  // Método para obtener el ID del usuario logeado
+  private getLoggedUserId(): number {
+    const user = JSON.parse(localStorage.getItem('loggedUser') || '{}');
+    return user?.id || 0; 
   }
 }
