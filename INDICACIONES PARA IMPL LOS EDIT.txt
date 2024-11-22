@@ -1,0 +1,22 @@
+INDICACIONES PARA LOS EDIT
+
+PASO 1:
+
+En el terminal 
+
+ng g c components/edit-event
+ng g c components/edit-volunteer
+
+PASO 2:
+
+En el app-routing.module.ts se pone los imports y la ruta
+
+import { EditVolunteerComponent } from './components/edit-volunteer/edit-volunteer.component';
+import { EditEventComponent } from './components/edit-event/edit-event.component';
+
+const routes: Routes = [
+  { path: 'edit-volunteer/:id', component: EditVolunteerComponent },  
+  { path: '', redirectTo: 'volunteer-listar', pathMatch: 'full' },
+  { path: 'edit-event/:id', component: EditEventComponent },  
+  { path: '', redirectTo: 'event-listar', pathMatch: 'full' }
+];
