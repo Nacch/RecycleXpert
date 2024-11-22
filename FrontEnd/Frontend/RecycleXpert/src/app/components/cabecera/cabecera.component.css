@@ -6,4 +6,15 @@
     color: #030303; /* Color de texto en blanco */
   }
   
+  .user-info {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    transition: background-color 0.3s ease;  /* Transición suave para el hover */
+  }
   
+  
+  .user-avatar {
+    font-size: 28px;  /* Tamaño del icono de avatar */
+    margin-right: 8px;  /* Espaciado entre el icono y el nombre */
+  }

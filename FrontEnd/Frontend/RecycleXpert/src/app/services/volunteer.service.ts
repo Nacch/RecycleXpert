@@ -34,9 +34,9 @@ export class VolunteerService {
     return this.http.put<Volunteer>(this.servidor+"/"+this.recurso+"/"+volunteer.id.toString(),volunteer);
   }
 
-  /*
-  
-
-  */
+  // Llamada HTTP para obtener el progreso del voluntario
+  getVolunteerPoints(volunteerId: number) {
+    
+  }
 
 }

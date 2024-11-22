@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Token } from '../models/token';
+import { Volunteer } from '../models/volunteer';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class UserService {
 
   //Prueba
   private currentUserRole: string | null = null;
+  private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+
   //
   ruta_servidor: string = "http://localhost:8080/api";
   recurso:string = "users";
@@ -48,15 +51,26 @@ export class UserService {
         localStorage.setItem('jwtToken', resultado.jwtToken);
         localStorage.setItem('user_id', resultado.user_id.toString());
         localStorage.setItem('authorities', resultado.authorities);
-      }
-      )
+
+        // Obtener usuario después de login
+        this.getUser(Number(resultado.user_id)).subscribe((user) => {
+        this.currentUserSubject.next(user);  // Emitimos el usuario actualizado
+
+        });
+      })
     );
   }
+  
+  get currentUser() {
+    return this.currentUserSubject.asObservable();
+  }
+
 
   logout(){
     if (typeof localStorage !== 'undefined') {
       localStorage.clear();
     }
+    this.currentUserSubject.next(null); // Limpiamos el usuario cuando se cierra sesión
   }
 
   hayUsuarioLogeado(){
@@ -65,7 +79,6 @@ export class UserService {
     }
     return true;
   }
-
 
   getTokenActual() {
     if (typeof localStorage !== 'undefined') {
