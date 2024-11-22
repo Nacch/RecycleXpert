@@ -6,5 +6,5 @@ export interface Volunteer{
     points: number;
     category: String;
     level: number;
-
+    //userId: number //recien añadi porque verificando me faltaba
 }

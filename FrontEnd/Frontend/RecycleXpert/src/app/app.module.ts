@@ -25,6 +25,7 @@ import { AutorizacionInterceptor } from './interceptor/autorizacion.interceptor'
 import { AutorizarVolunteerGuard } from './guards/autorizar-volunteer.guard';
 import { AutorizarOrganizationGuard } from './guards/autorizar-organization.guard';
 import { EventRegistervolunteerComponent } from './components/event-registervolunteer/event-registervolunteer.component';
+import { DonationRegisterComponent } from './components/donation-register/donation-register.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { EventRegistervolunteerComponent } from './components/event-registervolu
     OrganizationSignupComponent,
     SelectSignupComponent,
     CabeceraComponent,
-    EventRegistervolunteerComponent
+    EventRegistervolunteerComponent,
+    DonationRegisterComponent
   ],
   imports: [
     BrowserModule,
