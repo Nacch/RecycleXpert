@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EventvolunteerService {
+  unsubscribeVolunteerFromEvent(volunteerId: string, eventId: number) {
+    throw new Error('Method not implemented.');
+  }
     // Ruta a donde se conectará
     servidor: string = "http://localhost:8080/api";
     recurso: string = "registerevent";
