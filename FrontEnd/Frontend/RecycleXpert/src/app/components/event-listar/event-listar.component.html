@@ -5,7 +5,13 @@
   <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
 </mat-form-field>
 
-<table mat-table [dataSource]="dsEvent" class="mat-elevation-z8" style="width: 100%; margin-top: 20px;">
+<!-- Mensaje si no hay eventos registrados -->
+<div *ngIf="dsEvent.data.length === 0" style="text-align: center; margin-top: 20px;">
+  <p>No tienes eventos registrados actualmente.</p>
+</div>
+
+<!-- Tabla de eventos -->
+<table mat-table [dataSource]="dsEvent" class="mat-elevation-z8" style="width: 100%; margin-top: 20px;" *ngIf="dsEvent.data.length > 0">
   
   <!-- ID Column -->
   <ng-container matColumnDef="id">
