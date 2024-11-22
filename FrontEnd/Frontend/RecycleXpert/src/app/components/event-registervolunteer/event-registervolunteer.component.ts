@@ -13,12 +13,10 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrl: './event-registervolunteer.component.css',
 })
 export class EventRegistervolunteerComponent {
-
-  selectedEvents: number[] = []; 
-  cant_Event: number = 0; 
-  eventsList = new MatTableDataSource<Evento>(); 
-  selectedEvent: number | null = null; 
+  selectedEvents: number[] = [];
   cant_Event: number = 0;
+  eventsList = new MatTableDataSource<Evento>();
+  selectedEvent: number | null = null;
   displayedColumns: string[] = ['eventName', 'date', 'description', 'location', 'select', 'actions']; // Columnas actualizadas
 
   constructor(
@@ -30,7 +28,6 @@ export class EventRegistervolunteerComponent {
   ) {}
 
   ngOnInit(): void {
-    this.loadEvents(); 
     this.loadEvents();
   }
 
