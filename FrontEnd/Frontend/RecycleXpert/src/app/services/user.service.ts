@@ -19,22 +19,29 @@ export class UserService {
   recurso:string = "users";
 
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) { 
+    const authorities = this.getAuthoritiesActual();
+    if (authorities) {
+      this.setRole(authorities);
+    }
+  }
 
   //Prueba
   setRole(authorities: string): void {
     this.currentUserRole = authorities;
   }
 
+  // Cambiados de getters a métodos regulares
   isVolunteer(): boolean {
-    return this.currentUserRole === 'VOLUNTARIO';
+    const authorities = this.getAuthoritiesActual();
+    return authorities?.includes('VOLUNTARIO') ?? false;
   }
 
   isOrganization(): boolean {
-    return this.currentUserRole === 'ORGANIZACION';
+    const authorities = this.getAuthoritiesActual();
+    return authorities?.includes('ORGANIZACION') ?? false;
   }
 
-  //
 
   getUser(id: number){
     return this.http.get<User>(this.ruta_servidor+"/"+this.recurso+"/"+id.toString());
@@ -44,18 +51,20 @@ export class UserService {
     return this.http.post<User>(this.ruta_servidor+"/"+this.recurso + "/" + "register",user);
   }
 
-  login(user: User){
+  login(user: User) {
     this.logout();
-    return this.http.post<Token>(this.ruta_servidor+"/"+this.recurso + "/" + "login",user).pipe(
-      tap( (resultado:Token)=>{
+    return this.http.post<Token>(this.ruta_servidor + "/" + this.recurso + "/" + "login", user).pipe(
+      tap((resultado: Token) => {
         localStorage.setItem('jwtToken', resultado.jwtToken);
         localStorage.setItem('user_id', resultado.user_id.toString());
         localStorage.setItem('authorities', resultado.authorities);
+        
+        // Establecer el rol inmediatamente después del login
+        this.setRole(resultado.authorities);
 
         // Obtener usuario después de login
         this.getUser(Number(resultado.user_id)).subscribe((user) => {
-        this.currentUserSubject.next(user);  // Emitimos el usuario actualizado
-
+          this.currentUserSubject.next(user);
         });
       })
     );
@@ -65,12 +74,12 @@ export class UserService {
     return this.currentUserSubject.asObservable();
   }
 
-
-  logout(){
+  logout() {
     if (typeof localStorage !== 'undefined') {
       localStorage.clear();
     }
-    this.currentUserSubject.next(null); // Limpiamos el usuario cuando se cierra sesión
+    this.currentUserRole = null;
+    this.currentUserSubject.next(null);
   }
 
   hayUsuarioLogeado(){

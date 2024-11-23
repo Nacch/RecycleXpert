@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export interface Volunteer{
     id: number;
     volunteerName: string;
@@ -6,5 +8,5 @@ export interface Volunteer{
     points: number;
     category: String;
     level: number;
-    //userId: number //recien añadi porque verificando me faltaba
+    //user: number; // Relación uno a uno, opcional si aún no se asigna
 }

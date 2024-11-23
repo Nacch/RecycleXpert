@@ -1,5 +1,6 @@
-<h2>Registrar Donación</h2>
-<form [formGroup]="donationForm" (ngSubmit)="submitDonation()">
+<h2 class="register-donation-title">Registrar Donación</h2>
+
+<form [formGroup]="donationForm" (ngSubmit)="submitDonation()" class="donation-form">
   <!-- Campo: Nombre del Donante -->
   <mat-form-field appearance="fill">
     <mat-label>Nombre del Donante</mat-label>
@@ -9,7 +10,7 @@
     </mat-error>
   </mat-form-field>
 
-  <!-- Campo: Monto -->
+  <!-- Campo: Monto de la Donación -->
   <mat-form-field appearance="fill">
     <mat-label>Monto de la Donación</mat-label>
     <input matInput type="number" formControlName="amount" placeholder="Ingrese el monto" />
@@ -18,8 +19,26 @@
     </mat-error>
   </mat-form-field>
 
-  <!-- Botones -->
-  <button mat-raised-button color="primary" type="submit" [disabled]="donationForm.invalid">
-    Registrar Donación
-  </button>
+  <!-- Campo: Selección de Evento -->
+  <mat-form-field appearance="fill">
+    <mat-label>Evento Asociado</mat-label>
+    <mat-select formControlName="eventId">
+      <mat-option *ngFor="let event of events" [value]="event.id">
+        {{ event.eventName }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="donationForm.get('eventId')?.invalid && donationForm.get('eventId')?.touched">
+      Selecciona un evento válido.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Botones de acción -->
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="donationForm.invalid">
+      Registrar Donación
+    </button>
+    <button mat-raised-button color="accent" type="button" (click)="cancel()">
+      Cancelar
+    </button>
+  </div>
 </form>
