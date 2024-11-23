@@ -1,5 +1,6 @@
 package backend.project.controllers;
 
+import backend.project.dtos.DonationDTO;
 import backend.project.entities.Donation;
 import backend.project.exceptions.ResourceNotFoundException;
 import backend.project.serviceimpl.DonationServiceImpl;
@@ -9,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
@@ -18,37 +18,35 @@ public class DonationController {
     private DonationServiceImpl donationService;
 
     // Crear una donación para un evento específico
-    @PostMapping("/event/{eventId}")
-    public ResponseEntity<Donation> createDonation(@PathVariable Long eventId, @RequestBody Donation donation) {
+    @PostMapping("/donations")
+    public ResponseEntity<DonationDTO> createDonation(@RequestBody DonationDTO donationDTO) {
         try {
-            Donation newDonation = donationService.createDonation(eventId, donation);
-            return new ResponseEntity<>(newDonation, HttpStatus.CREATED);
+            // Llama al servicio para procesar el DTO
+            Donation newDonation = donationService.createDonationFromDTO(donationDTO);
+
+            // Convierte la entidad en un DTO antes de devolverla
+            DonationDTO responseDTO = donationService.convertToDTO(newDonation);
+            return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
         } catch (ResourceNotFoundException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     // Obtener todas las donaciones para un evento específico
-    @GetMapping("/event/{eventId}")
-    public ResponseEntity<List<Donation>> getAllDonationsForEvent(@PathVariable Long eventId) {
+    @GetMapping("/donations/event/{eventId}")
+    public ResponseEntity<List<DonationDTO>> getAllDonationsForEvent(@PathVariable Long eventId) {
         try {
             List<Donation> donations = donationService.getAllDonationsForEvent(eventId);
-            return new ResponseEntity<>(donations, HttpStatus.OK);
-        } catch (ResourceNotFoundException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    // Obtener una donación por su ID
-    @GetMapping("/{donationId}")
-    public ResponseEntity<Donation> getDonationById(@PathVariable Long donationId) {
-        try {
-            Donation donation = donationService.getDonationById(donationId);
-            return new ResponseEntity<>(donation, HttpStatus.OK);
+            // Convierte las entidades en DTOs
+            List<DonationDTO> donationDTOs = donations.stream()
+                    .map(donationService::convertToDTO)
+                    .toList();
+
+            return new ResponseEntity<>(donationDTOs, HttpStatus.OK);
         } catch (ResourceNotFoundException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         } catch (Exception e) {
@@ -56,3 +54,4 @@ public class DonationController {
         }
     }
 }
+
