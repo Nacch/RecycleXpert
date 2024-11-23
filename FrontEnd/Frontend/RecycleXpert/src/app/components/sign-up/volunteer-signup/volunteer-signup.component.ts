@@ -58,6 +58,7 @@ export class VolunteerSignupComponent {
           points: this.addForm.get("points")?.value,
           category: this.addForm.get("category")?.value,
           level: this.addForm.get("level")?.value  
+          
         };
 
         this.volunteerService.addVolunteer(volunteer).subscribe({

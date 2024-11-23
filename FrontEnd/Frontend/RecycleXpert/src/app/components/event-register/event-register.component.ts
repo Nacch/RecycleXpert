@@ -110,18 +110,7 @@ export class EventRegisterComponent {
           this.addFormEvent.get("date")?.setValue(dataEvent.date+"T00:00:00");
           this.addFormEvent.get("location")?.setValue(dataEvent.location);
           this.addFormEvent.get("capacity")?.setValue(dataEvent.capacity);
-          /*
-          this.addFormEvent.patchValue({
-            eventName: dataEvent.eventName,
-            description: dataEvent.description,
-            date: dataEvent.date,
-            location: dataEvent.location,
-            capacity: dataEvent.capacity,
-            organizationId: dataEvent.organizationId,
-            eventTypeId: dataEvent.eventTypeId
-          });
-          */
-            // Obtener tipos de eventos (si usas un dropdown o lista)
+
           this.eventTypeService.getEventType(dataEvent.eventTypeId).subscribe({
             next: (dataEventType: EventType) => {
               this.eventType = [dataEventType]; // asigna el dato como un array de un solo elemento si es necesario
@@ -139,26 +128,10 @@ export class EventRegisterComponent {
       })
 
     } else{
-      //Cuando deseaños insertar
+      //Cuando deseamos insertar
       this.eventId = 0;
     }
-    /*
 
-    else {
-        // Si es un nuevo evento, podrías cargar la lista de tipos de eventos también aquí
-        this.eventTypeService.getEventTypes().subscribe({
-          next: (dataEventTypes: EventType[]) => {
-            this.eventType = dataEventTypes;
-          }
-        });
-
-        this.organizationService.getOrganizations().subscribe({
-          next: (dataOrganizations : Organization[])=>{
-            this.organization=dataOrganizations;
-          } 
-        })
-    }
-        */
   }
 
   RegistrarEvento(){
@@ -207,7 +180,6 @@ export class EventRegisterComponent {
     }
   
   }
-  
   onCancel(): void {
     this.router.navigate(['/home']);
   }

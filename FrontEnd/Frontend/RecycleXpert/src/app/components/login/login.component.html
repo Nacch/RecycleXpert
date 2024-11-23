@@ -1,45 +1,44 @@
-<h2 class="login-title">Bienvenido!</h2>
+<div class="login-container">
+  <h2 class="login-title">¡Bienvenido!</h2>
 
-<form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+    <!-- Campo para el nombre de usuario -->
+    <mat-form-field class="full-width">
+      <mat-label>Nombre de usuario</mat-label>
+      <input matInput formControlName="userName" placeholder="Ingrese su nombre de usuario">
+      <mat-error *ngIf="loginForm.get('userName')?.hasError('required')">Este campo es obligatorio</mat-error>
+    </mat-form-field>
 
-  <!-- Campo para el nombre de usuario -->
-  <mat-form-field class="full-width">
-    <mat-label>Nombre de usuario</mat-label>
-    <input matInput formControlName="userName" placeholder="Ingrese su nombre de usuario">
-    <mat-error *ngIf="loginForm.get('userName')?.hasError('required')">Este campo es obligatorio</mat-error>
-  </mat-form-field>
-
-  <!-- Campo para la contraseña -->
-  <mat-form-field class="full-width">
-    <mat-label>Contraseña</mat-label>
-    <input matInput formControlName="password" [type]="ocultarPass ? 'password' : 'text'" placeholder="Ingrese su contraseña">
-    <button mat-icon-button matSuffix (click)="ocultarPass = !ocultarPass" aria-label="Mostrar/ocultar contraseña">
-      <mat-icon>{{ ocultarPass ? 'visibility_off' : 'visibility' }}</mat-icon>
-    </button>
-    <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Este campo es obligatorio</mat-error>
-  </mat-form-field>
-
-  <mat-card-footer>
-    <p class="login-footer">
-      ¿No tienes una cuenta?
-      <button mat-button color="accent" type="button" (click)="openRegisterDialog()">
-        Regístrate aquí
+    <!-- Campo para la contraseña -->
+    <mat-form-field class="full-width">
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="password" [type]="ocultarPass ? 'password' : 'text'" placeholder="Ingrese su contraseña">
+      <button mat-icon-button matSuffix (click)="ocultarPass = !ocultarPass" aria-label="Mostrar/ocultar contraseña">
+        <mat-icon>{{ ocultarPass ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
-    </p>
-  </mat-card-footer>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Este campo es obligatorio</mat-error>
+    </mat-form-field>
 
-    <!-- OPCION MOMENTANEA PARA VERIFICAR -->
-  <button mat-button routerLink="/menu">
-    <mat-icon></mat-icon>
-    Opción momentanea: Desarrollo
+    <!-- Enlace para registro -->
+    <mat-card-footer>
+      <p class="login-footer">
+        ¿No tienes una cuenta?
+        <button mat-button color="accent" type="button" (click)="openRegisterDialog()">
+          Regístrate aquí
+        </button>
+      </p>
+    </mat-card-footer>
+
+    <!-- Botones de acción -->
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="login-btn">Login</button>
+      <button mat-raised-button color="accent" type="button" (click)="cancelar()" class="cancel-btn">Cancelar</button>
+    </div>
+  </form>
+
+  <!-- Opción temporal para desarrollo -->
+  <button mat-stroked-button routerLink="/menu" class="dev-option">
+    <mat-icon>build</mat-icon>
+    Opción momentánea: Desarrollo
   </button>
-
-  <!-- Acciones -->
-  <div class="actions">
-    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="login-btn">Login</button>
-    <span> - </span>
-    <button mat-raised-button color="accent" type="button" (click)="cancelar()" class="cancel-btn">Cancelar</button>
-  </div>
-
-  
-</form>
+</div>

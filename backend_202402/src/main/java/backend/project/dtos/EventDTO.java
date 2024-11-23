@@ -17,4 +17,5 @@ public class EventDTO {
     private int capacity;
     private Long eventTypeId;
     private Long organizationId;
+
 }
